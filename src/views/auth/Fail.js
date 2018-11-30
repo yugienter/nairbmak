@@ -24,7 +24,7 @@ const Fail = (props) =>
                     <p className="content">Switch the network to Rinkeby testnet. And reloading the page</p>
                   </div>
                 </div>
-                <p className="contact-text">Please contact <a href="mailto:support@kambria.io">support@kambria.io</a> to request for access.</p>
+                <p className="contact-text">Please contact <a href="mailto:phu.nguyenluu@gmail.com">phu.nguyenluu@gmail.com</a> to request for access.</p>
               </span>
             </div>
           </div>

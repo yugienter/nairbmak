@@ -26,7 +26,7 @@ exports["snapshot for Home(0)"] = {
             {
               "type": "h1",
               "props": {
-                "children": "Welcome to Kambria Lego!"
+                "children": "Welcome to Nairmak Lego!"
               },
               "_store": {}
             },
@@ -116,7 +116,7 @@ exports["snapshot for Home(0)"] = {
           {
             "type": "h1",
             "props": {
-              "children": "Welcome to Kambria Lego!"
+              "children": "Welcome to Nairmak Lego!"
             },
             "_store": {}
           },
@@ -199,9 +199,9 @@ exports["snapshot for Home(0)"] = {
           "nodeType": "host",
           "type": "h1",
           "props": {
-            "children": "Welcome to Kambria Lego!"
+            "children": "Welcome to Nairmak Lego!"
           },
-          "rendered": "Welcome to Kambria Lego!"
+          "rendered": "Welcome to Nairmak Lego!"
         },
         {
           "nodeType": "host",
@@ -340,7 +340,7 @@ exports["snapshot for Home(0)"] = {
             {
               "type": "h1",
               "props": {
-                "children": "Welcome to Kambria Lego!"
+                "children": "Welcome to Nairmak Lego!"
               },
               "_store": {}
             },
@@ -423,9 +423,9 @@ exports["snapshot for Home(0)"] = {
             "nodeType": "host",
             "type": "h1",
             "props": {
-              "children": "Welcome to Kambria Lego!"
+              "children": "Welcome to Nairmak Lego!"
             },
-            "rendered": "Welcome to Kambria Lego!"
+            "rendered": "Welcome to Nairmak Lego!"
           },
           {
             "nodeType": "host",
@@ -570,14 +570,14 @@ exports["snapshot for Home(0)"] = {
             "nodeType": "host",
             "type": "h1",
             "props": {
-              "children": "Welcome to Kambria Lego!"
+              "children": "Welcome to Nairmak Lego!"
             },
-            "rendered": "Welcome to Kambria Lego!"
+            "rendered": "Welcome to Nairmak Lego!"
           },
           "type": "h1",
           "props": {},
           "children": [
-            "Welcome to Kambria Lego!"
+            "Welcome to Nairmak Lego!"
           ]
         },
         {

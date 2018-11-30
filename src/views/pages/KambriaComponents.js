@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 // Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updatePageStatus } from 'redux/actions/ui.action';
+// import { updatePageStatus } from 'redux/actions/ui.action';
 
 import { Section, PageHero, Tabs, Tab, TabContainer, PageLoader } from "@kambria/kambria-lego";
 import TopActionsBar from 'views/components/core/TopActionsBar';
@@ -102,9 +102,9 @@ class KambriaComponents extends React.Component {
   }
 
   handleClick = async () => {
-    this.props.updatePageStatus('loading');
+    // this.props.updatePageStatus('loading');
     await NotificationsService.getNotifications(3000);
-    this.props.updatePageStatus('loaded');
+    // this.props.updatePageStatus('loaded');
   };
 
   handleChange = (value) => {
@@ -231,7 +231,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  updatePageStatus
+  // updatePageStatus
 }, dispatch);
 
 export default withRouter(connect(

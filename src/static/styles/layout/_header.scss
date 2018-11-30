@@ -8,6 +8,14 @@ Header
   .navbar-brand {
     margin-top: calculateRem(18px);
   }
+  .navbar-brand.mr-auto {
+    margin: 0 auto 0 0 !important;
+
+    img {
+      height: 45px;
+      padding: 5px;
+    }
+  }
   .navbar {
     ul {
       @include flexbox;
