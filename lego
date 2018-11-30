@@ -1,0 +1,352 @@
+#!/usr/bin/php
+<?php
+
+const PAGE_TEMPLATE = "import React from 'react';
+
+const %%NAME%% = () =>
+  <main className='main'>
+    <div id='content' className='container'>
+      Page %%NAME%%
+    </div>
+  </main>;
+
+export default %%NAME%%;
+";
+
+const PAGE_TEMPLATE_CLASS = "import React from 'react';
+
+class %%NAME%% extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      isLoaded: true
+    };
+    console.log(props);
+  }
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    return <main className='main'>
+      <div id='content' className='container'>
+        Page %%NAME%%
+      </div>
+    </main>;
+  }
+}
+
+export default %%NAME%%;
+";
+
+const PAGE_TEMPLATE_REDUX = "import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import {sampleAction} from 'redux/actions/sample.action.js';
+
+class %%NAME%% extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      isLoaded: true
+    };
+    console.log(props);
+  }
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    return <main className='main'>
+      <div id='content' className='container'>
+        <a className='btn btn-sm btn-success' onClick={() => this.props.sampleAction('Hello World!')}>Sample Action: {this.props.sample.text}</a>
+      </div>
+    </main>;
+  }
+}
+
+const mapStateToProps = state => ({
+  sample: state.sample
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  sampleAction
+}, dispatch);
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(%%NAME%%));
+";
+
+const COMPONENT_TEMPLATE = "import React from 'react';
+
+const %%NAME%% = (props) =>
+  <div className='component' style={{border: '1px solid #ccc'}}>
+    Sample Component
+  </div>;
+
+export default %%NAME%%;
+";
+
+const TEST_COMPONENT_TEMPLATE = "// import React from 'react';
+// import Enzyme, { shallow } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+// import { expect } from 'chai';
+// import sinon from 'sinon';
+
+// import %%NAME%% from 'views/components/%%PATH%%';
+
+// Enzyme.configure({ adapter: new Adapter() });
+
+describe('Component: <%%NAME%% />', () => {
+  it('should have unit test here');
+});
+";
+
+const TEST_REDUX_ACTION_TEMPLATE = "// import { expect } from 'chai';
+// import configureMockStore from 'redux-mock-store';
+// import thunk from 'redux-thunk';
+
+// import * as types from 'redux/actions/actionTypes.js';
+// import * as actions from 'redux/actions/%%NAME%%.action.js';
+
+// const middlewares = [thunk];
+// const mockStore = configureMockStore(middlewares);
+
+describe('Redux Action: %%NAME%%.action', () => {
+
+  it('should have unit test here');
+
+  // it('should do %%NAME%%', (done) => {
+
+  //   const expectedActions = [
+  //     { type: types.ACTION, data:[] },
+  //   ];
+  //   const store = mockStore({ codebases: [] });
+
+  //   store.dispatch(actions.SOMETHING()).then(() => {
+  //     // return of async actions
+  //     expect(store.getActions()).to.deep.equal(expectedActions);
+  //     done();
+  //   });
+  // });
+});
+";
+
+const TEST_REDUX_REDUCER_TEMPLATE = "// import { expect } from 'chai';
+
+// import * as types from 'redux/actions/actionTypes.js';
+// import reducer from 'redux/reducers/%%NAME%%.reducer.js';
+
+describe('Redux Reducer: %%NAME%%.reducer', () => {
+
+  it('should have unit test here');
+
+  // it('should return the initial state', () => {
+  //   expect(reducer(undefined, {})).to.deep.equal({
+  //     data: null,
+  //     selected: {}
+  //   });
+  // });
+
+  // it('should handle ACTION', () => {
+  //   expect(
+  //     reducer(undefined, {
+  //       type: types.ACTION,
+  //       data: 'Run the tests'
+  //     })
+  //   ).to.deep.equal({
+  //     data: 'Run the tests',
+  //     ...
+  //   });
+  // });
+});
+";
+
+const REDUX_ACTION_TEMPLATE = "import * as types from './actionTypes';
+
+export const do_%%NAME%% = (param) => {
+  return dispatch => {
+    console.log(param);
+    dispatch({ type: types.%%NAME%%, data: {text: param}, extra: 'More info' });
+  };
+};
+";
+
+const REDUX_REDUCER_TEMPLATE = "import * as types from '../actions/actionTypes';
+
+const defaultState = {};
+
+export default (state = defaultState, action) => {
+  switch (action.type) {
+    case types.%%NAME%%:
+      console.log(action.extra);
+      alert(action.data.text);
+      return { ...state, ...action.data };
+    default:
+      return state;
+  }
+};
+";
+
+$commands = ['loc', 'page', 'component', 'test', 'redux', 'test:redux'];
+
+$command = isset($argv[1]) ? $argv[1] : '';
+
+$options = getopt("p:f:t:hv");
+
+if(isset($options['h']) || !in_array($command, $commands)){
+  echo "Utility Command for Lego project. Copyright by phongvh\n
+Usage: php lego <loc | page | component | redux> <name|path> [--class | --redux]\n
+  - loc: (no argument required) calculate the LOC (Lines Of Code) of all js file in src folder
+  - page: (a name/path required) create a new page with provided name
+    + (no option): create a functional page
+    + --class: create a class page
+    + --redux: create a page connecting to redux
+  - component: (a name/path required) create a new component with its test file
+  - test: (a name/path required) create a test file
+  - redux: (a name required) create a new action & reducer with provided name
+  - -h: display help text\n\n";
+  exit;
+}
+
+$path_list = $list1 = $list2 = $file_type = array();
+
+if($command === 'loc') {
+
+  if(isset($options['p']) && $options['p']){
+    $list1 = explode(',', $options['p']);
+  }
+
+  if(isset($options['f']) && $options['f']){
+    $list2 = file($options['f'], FILE_IGNORE_NEW_LINES);
+  }
+
+  if(isset($options['t']) && $options['t']){
+    $file_type = explode(',', $options['t']);
+  }
+
+  if(empty($file_type)) $file_type = ['js'];
+
+  $path_list = array_merge($list1, $list2);
+
+  if(empty($path_list)) $path_list = ['src'];
+
+  //if(empty($path_list)) $path_list = array(__DIR__);
+
+  $loc = 0;
+
+  foreach($path_list as $item){
+      $loc += count_loc($item, $file_type);
+  }
+
+  echo "===\nTotal Lines of ". strtoupper(implode(',',$file_type)) ." code in '" . implode(',',$path_list) . "' folder: $loc\n";
+} else {
+  $path = isset($argv[2]) ? $argv[2] : '';
+  if(!$path) echo "Error: Please provide a name";
+  else{
+    $path_arr = explode('/', $path);
+    $name = array_pop($path_arr);
+    $dir = implode('/', $path_arr);
+
+    if($command === 'page'){
+      $template = PAGE_TEMPLATE;
+      if(in_array('--class', $argv)) $template = PAGE_TEMPLATE_CLASS;
+      else if(in_array('--redux', $argv)) $template = PAGE_TEMPLATE_REDUX;
+
+      if (!file_exists('./src/views/pages/'.$dir)) {
+        mkdir('./src/views/pages/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/views/pages/$path.js", TemplateEngine($template, ['/%%NAME%%/' => $name]));
+      echo "A new page created at ./src/views/pages/$path.js\n";
+      echo "\nNEXT STEP:\n===
+      Go to ./src/routes/index.js to register this page\n===";
+    } else if($command === 'redux'){
+      file_put_contents("./src/redux/actions/$name.action.js", TemplateEngine(REDUX_ACTION_TEMPLATE, ['/%%NAME%%/' => strtoupper($name)]));
+      file_put_contents("./src/redux/reducers/$name.reducer.js", TemplateEngine(REDUX_REDUCER_TEMPLATE, ['/%%NAME%%/' => strtoupper($name)]));
+      echo "A new action created at ./src/redux/actions/$name.action.js\n";
+      echo "A new reducer created at ./src/redux/reducers/$name.reducer.js\n";
+      echo "\nNEXT STEP:\n===
+      Add new ACTION TYPE to ./src/redux/actions/actionTypes.js
+      Add new REDUCER to ./src/redux/reducers/index.js\n===";
+    } else if($command === 'component'){
+      if (!file_exists('./src/views/components/'.$dir)) {
+        mkdir('./src/views/components/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/views/components/$path.js", TemplateEngine(COMPONENT_TEMPLATE, ['/%%NAME%%/' => $name]));
+      echo "A new component created at ./src/views/components/$path.js\n";
+      if (!file_exists('./src/tests/components/'.$dir)) {
+        mkdir('./src/tests/components/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/tests/components/$path.test.js", TemplateEngine(TEST_COMPONENT_TEMPLATE, ['/%%NAME%%/' => $name, '/%%PATH%%/' => $path]));
+      echo "A new test file created at ./src/tests/components/$path.test.js\n";
+    } else if($command === 'test'){
+      if (!file_exists('./src/tests/'.$dir)) {
+        mkdir('./src/tests/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/tests/$path.test.js", TemplateEngine(TEST_COMPONENT_TEMPLATE, ['/%%NAME%%/' => $name, '/%%PATH%%/' => $path]));
+      echo "A new test file created at ./src/tests/$path.test.js\n";
+    } else if($command === 'test:redux'){
+      if (!file_exists('./src/tests/redux/actions/'.$dir)) {
+        mkdir('./src/tests/redux/actions/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/tests/redux/actions/$path.action.test.js", TemplateEngine(TEST_REDUX_ACTION_TEMPLATE, ['/%%NAME%%/' => $name]));
+      echo "A new test file created at ./src/tests/redux/actions/$path.action.test.js\n";
+
+      if (!file_exists('./src/tests/redux/reducers/'.$dir)) {
+        mkdir('./src/tests/redux/reducers/'.$dir, 0777, true);
+      }
+      file_put_contents("./src/tests/redux/reducers/$path.reducer.test.js", TemplateEngine(TEST_REDUX_REDUCER_TEMPLATE, ['/%%NAME%%/' => $name]));
+      echo "A new test file created at ./src/tests/redux/reducers/$path.reducer.test.js\n";
+    }
+
+  }
+}
+
+function count_loc($path, $file_type, $verbose=true)
+{
+  $loc = 0;
+  if(is_file($path)) {
+    $loc = count(file($path));
+    echo $path . ": $loc\n";
+    return $loc;
+  }
+
+  if(!is_dir($path)) {
+    echo "$path: Path not found\n";
+    return 0;
+  }
+
+  $dir = new DirectoryIterator($path);
+
+  foreach ( $dir as $node )
+  {
+    if ( $node->isDir() && !$node->isDot() )
+    {
+      $loc += count_loc( $node->getPathname(), $file_type, $verbose );
+    }
+    else if ( $node->isFile() )
+    {
+      if(empty($file_type) || in_array($node->getExtension(), $file_type)){
+        $_loc = count(file($node->getPathname()));
+        $loc += $_loc;
+        if($verbose)
+          echo $node->getPathname().": $_loc\n";
+      }
+    }
+  }
+  return $loc;
+}
+
+function TemplateEngine ($tpl, $data) {
+  $patterns = array_keys($data);
+  $replacements = array_values($data);
+  //foreach($data as $patterns[] => $replacements[]){}
+  // $re = '/%%([^%%]+)?%%/';
+  return preg_replace($patterns, $replacements, $tpl);
+}
