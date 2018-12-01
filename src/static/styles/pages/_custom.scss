@@ -14,6 +14,144 @@
   padding-left: 20px;
 }
 
+.adr-sharing {
+  background-image: url(../images/adr-sharing-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.AdrSharing__main {
+  margin: 0 auto;
+}
+
+#redeem-form, #redeem-token-form {
+  margin: 0 auto;
+  margin-top: -66px;
+  width: 777px;
+  label {
+    color: white;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    color: #ffffff;
+    font-size: 24px;
+    position: relative;
+    left: 345px;
+    bottom: 30px;
+  }
+  .form-group {
+    float: left;
+    display: inline-block;
+  }
+}
+#redeem-address {
+  width: 414px;
+  border-radius: 10px;
+  padding: 12px 30px;
+  &.error {
+    border: 2px solid #FF3838;
+  }
+}
+#redeem-code, #token-amount {
+  width: 200px;
+  border-radius: 10px;
+  margin-left: 16px;
+  padding: 12px 30px;
+  &.error {
+    border: 2px solid #FF3838;
+  }
+}
+#token-amount::after {
+  content: 'KATT';
+}
+#redeem-submit {
+  background-color: #1aeec2;
+  color: #000;
+  margin-left: 16px;
+  margin-top: 40px;
+  border-radius: 10px;
+  padding: 12px 30px;
+}
+#redeem-error-message, #redeem-token-message {
+  color: #fff;
+  width: 630px;
+  margin: 0;
+  display: block;
+}
+#redeem-token-message {
+  bottom: 16px;
+  height: 0;
+  position: relative;
+}
+#redeem-success-wrapper {
+  margin: 0 auto;
+  margin-top: calc(50vh - 250px);
+  h1 {
+    color: #ffffff;
+    font-size: 24px;
+    width: 160px;
+    position: relative;
+    bottom: 20px;
+    margin: auto;
+    display: block;
+  }
+}
+#redeem-gift-box {
+  background-image: url('../svg/ic-gift-box.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  width: 47px;
+  height: 44px;
+}
+#redeem-success-title {
+  margin: auto;
+  clear: both;
+  display: block;
+  color: #1AEEC2;
+  width: 180px;
+  font-size: 24px;
+  line-height: 25px;
+  margin-top: 16px;
+}
+#redeem-success-message {
+  color: white;
+  display: block;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 25px;
+}
+#redeem-success-button {
+  display: block;
+  background-color: #1AEEC2;
+  width: 170px;
+  margin: auto;
+  margin-top: 32px;
+  padding: 18px 0;
+  color: black;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 16px;
+}
+label[for='redeem-code'], label[for='token-amount'] {
+  margin-left: 16px;
+}
+#amount-suffix::after {
+  content: 'KATT';
+  color: #000000;
+  opacity: 0.3;
+  float: right;
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 16px;
+  bottom: 32px;
+  right: 16px;
+}
+
 @mixin linear-gradient($from, $to) {
   background-image: -moz-linear-gradient(top, $from 0%, $to 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
