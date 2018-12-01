@@ -13,7 +13,7 @@ import logo from 'logo.png';
 import { Header, Footer, Nav, NavItem, PageLoader } from '@kambria/kambria-lego';
 
 import routes from 'routes';
-import {PrivateRouteWithRender} from 'routes/types';
+import { PrivateRouteWithRender } from 'routes/types';
 
 import Fail from 'views/auth/Fail';
 import Error404 from './views/errors/404';
@@ -32,7 +32,9 @@ class App extends React.Component {
         image: logo
       },
       nav: [
-        { url: '/report', title: 'Report', exact: false }
+        { url: '/report', title: 'Report', exact: false },
+        { url: '/share', title: 'Share', exact: false },
+        { url: '/explorer', title: 'Explorer', exact: false }
       ]
     };
 
@@ -80,21 +82,10 @@ class App extends React.Component {
 
     // Watch metamask & token
     this.metamask.watch().then(watcher => {
-        watcher.event.on("data", re => {
-          this.props.updateInfo(re); //blockchain reload so don't care about data
-        });
-        watcher.event.on("error", er => {
-          var updateData = {
-            NETWORK: null,
-            NETWORK_NAME: null,
-            ACCOUNT: null,
-            BALANCE: null,
-            CHANGED: null,
-            TOKEN_BALANCE: null
-          };
-          this.getStatusAndUpdateInfo(updateData);
-        });
-      }).catch(er => {
+      watcher.event.on("data", re => {
+        this.props.updateInfo(re); //blockchain reload so don't care about data
+      });
+      watcher.event.on("error", er => {
         var updateData = {
           NETWORK: null,
           NETWORK_NAME: null,
@@ -105,6 +96,17 @@ class App extends React.Component {
         };
         this.getStatusAndUpdateInfo(updateData);
       });
+    }).catch(er => {
+      var updateData = {
+        NETWORK: null,
+        NETWORK_NAME: null,
+        ACCOUNT: null,
+        BALANCE: null,
+        CHANGED: null,
+        TOKEN_BALANCE: null
+      };
+      this.getStatusAndUpdateInfo(updateData);
+    });
 
   }
 
@@ -161,28 +163,28 @@ class App extends React.Component {
 
   render() {
     const header =
-    <section>
-      {
-        this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1}/>
-      }
-      <Header logo={this.state.logo}>
-        <Nav>
-          {this.state.nav.map((item, index) => <NavItem key={index} item={item} />)}
-        </Nav>
-        {this.props.ui.status === 'loading' && <PageLoader type='top' />}
-      </Header>;
+      <section>
+        {
+          this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1} />
+        }
+        <Header logo={this.state.logo}>
+          <Nav>
+            {this.state.nav.map((item, index) => <NavItem key={index} item={item} />)}
+          </Nav>
+          {this.props.ui.status === 'loading' && <PageLoader type='top' />}
+        </Header>;
     </section>
 
 
     const footer = <Footer />;
 
     return (
-        <Switch>
-          {
-            routes.map((route, i) => route.type === 'public' ? <Route exact key={i} path={route.path} render={(props) => <route.component {...props} header={header} footer={footer} />} /> : <PrivateRouteWithRender exact key={i} condition={this.validateUser()} path={route.path} success={route.component} failure={Fail} header={header} footer={footer} />)
-          }
-          <Route render={(props) => <Error404 {...props} header={header} footer={footer} />} />
-        </Switch>
+      <Switch>
+        {
+          routes.map((route, i) => route.type === 'public' ? <Route exact key={i} path={route.path} render={(props) => <route.component {...props} header={header} footer={footer} />} /> : <PrivateRouteWithRender exact key={i} condition={this.validateUser()} path={route.path} success={route.component} failure={Fail} header={header} footer={footer} />)
+        }
+        <Route render={(props) => <Error404 {...props} header={header} footer={footer} />} />
+      </Switch>
     );
   }
 }

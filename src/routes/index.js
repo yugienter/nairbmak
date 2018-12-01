@@ -7,5 +7,6 @@ export default [
   { path: "/", component: Home, type: 'public' },
   { path: "/report", component: Report, type: 'public' },
   { path: "/adr-sharing", component: AdrSharing, type: 'public' },
-  { path: "/view-report", component: ViewReport, type: 'public' }
+  { path: "/view-report", component: ViewReport, type: 'public' },
+  { path: "/share", component: AdrSharing, type: 'public' }
 ];
