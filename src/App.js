@@ -207,7 +207,7 @@ class App extends React.Component {
                 <option value="30">30</option>
                 <option value="40">40</option>
               </select>
-              <input type="text" name="inputNumber" placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
+              <input type="text" name="inputNumber" style={{ width: "98%", float: "left" }} placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
 
               </div>
               <input type="button" className="button" value="Đóng" onClick={this.closeModalScore}/>
