@@ -1,6 +1,37 @@
 import React from 'react';
+import Metamask from 'blockchain/libs/metamask'; 
+import Stake from 'blockchain/libs/stake';
+import config from 'config';
 
 class AdrSharing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amountOfStake: 0,
+      milestone: 0
+    }
+
+    this.metamask = new Metamask();
+    this.stake = new Stake(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+
+    this.metamask.fetch()
+    .then(data => this.stake.stakeOf(data.ACCOUNT))
+    .then(data => {
+      this.setState({
+        amountOfStake: data
+      });
+      this.metamask.web3.eth.getBlockNumber((err, milestone) => {
+        if(err) return console.log(err);
+        this.setState({
+          milestone: milestone - milestone % 7
+        });
+      });
+    })
+    .catch(err => {
+      console.log('== fetch ==', err);
+    });
+  }
+
 
   render() {
 
@@ -16,12 +47,12 @@ class AdrSharing extends React.Component {
         <section className='AdrSharing__main'>
           <form onSubmit={this.redeem} className="form-horizontal" id="redeem-form">
             <div className="form-group">
-              <label htmlFor="redeem-address">Eth address</label>
-              <input value={'asdfas'} onChange={this.onChangeAddress} type="text" className={"form-control "} id="redeem-address" name="redeem-address" />
+              <label htmlFor="redeem-address">Milestone</label>
+              <input value={this.state.milestone} onChange={this.onChangeAddress} type="text" className={"form-control "} id="redeem-address" name="redeem-address" />
             </div>
             <div className="form-group">
-              <label htmlFor="redeem-code">Redeem code</label>
-              <input value={'asfs'} onChange={this.onChangeCode} type="text" className={"form-control "} id="redeem-code" name="redeem-code" />
+              <label htmlFor="redeem-code">Amount of Stake</label>
+              <input value={this.state.amountOfStake} onChange={this.onChangeCode} type="text" className={"form-control "} id="redeem-code" name="redeem-code" />
             </div>
             <div className="form-group">
               <button id="redeem-submit" form="redeem-form" type="submit" className="btn btn-default">Withdraw</button>
