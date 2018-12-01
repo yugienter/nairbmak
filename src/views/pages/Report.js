@@ -5,7 +5,6 @@ import { saveAdrReport } from '../../redux/actions/adrReport.action.js';
 
 import "static/styles/contentForm.css";
 import Modal from 'react-bootstrap4-modal';
-import { Button } from '@kambria/kambria-lego';
 
 class Report extends React.Component {
   constructor(props, context) {
@@ -209,7 +208,7 @@ class Report extends React.Component {
                                       <label style={{ width: "200px", float: "left" }}>
                                           1. Ngày xuất hiện phản ứng:
                                       </label>
-                                      <input id="DateADR" name="DateADR" style={{ width: "80px" }} type="text" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.phanUngCoHaiADR.DateADR} />
+                                      <input id="DateADR" name="DateADR" style={{ width: "120px" }} type="date" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.phanUngCoHaiADR.DateADR} />
                                   </td>
                                   <td>
                                       <label style={{ width: "300px", float: "left" }}>
@@ -551,7 +550,7 @@ class Report extends React.Component {
                                   </td>
                                   <td style={{ textAlign: "right" }}>18.Ngày báo cáo: </td>
                                   <td>
-                                      <input id="ReportDate" name="ReportDate" style={{ width: "70px" }} type="text" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.thongTinNguoiThamDinh.ReportDate} />
+                                      <input id="ReportDate" name="ReportDate" style={{ width: "70px" }} type="date" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.thongTinNguoiThamDinh.ReportDate} />
                                       <img className="ui-datepicker-trigger" src="/Content/images/calendar.gif" alt="..." title="..." />
                                   </td>
                               </tr>
@@ -605,8 +604,8 @@ class Report extends React.Component {
                   <option value="UI/ml">UI/ml</option>
                 </select>
                 <input type="text" name="DuongDungThuocNN" placeholder="Đường Dùng" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.DuongDungThuocNN}/>
-                <input type="text" name="NgayBatDauThuocNN" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayBatDauThuocNN}/>
-                <input type="text" name="NgayKetThucThuocNN" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayKetThucThuocNN}/>
+                <input type="date" name="NgayBatDauThuocNN" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayBatDauThuocNN}/>
+                <input type="date" name="NgayKetThucThuocNN" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayKetThucThuocNN}/>
                 <input type="text" name="HamLuongThuocNN" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.HamLuongThuocNN}/>
                 <select name="DonViHamLuongThuocNN" value="" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViHamLuongThuocNN}>
                   <option value="G">G</option>
@@ -672,8 +671,8 @@ class Report extends React.Component {
                   <option value="UI/ml">UI/ml</option>
                 </select>
                 <input type="text" name="DuongDungThuocDDD" placeholder="Đường Dùng" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.DuongDungThuocDDD}/>
-                <input type="text" name="NgayBatDauThuocDDD" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayBatDauThuocDDD}/>
-                <input type="text" name="NgayKetThucThuocDDD" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayKetThucThuocDDD}/>
+                <input type="date" name="NgayBatDauThuocDDD" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayBatDauThuocDDD}/>
+                <input type="date" name="NgayKetThucThuocDDD" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayKetThucThuocDDD}/>
                 <input type="text" name="HamLuongThuocDDD" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.HamLuongThuocDDD}/>
                 <select name="DonViHamLuongThuocDDD" value="" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViHamLuongThuocDDD}>
                   <option value="G">G</option>
