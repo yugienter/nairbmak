@@ -1,5 +1,5 @@
 var EventEmitter = require('events');
-var Distribution_ABI = require('../build/contracts/TokenDistribution.json').abi;
+var Distribution_ABI = require('../api/contracts/TokenDistribution.json').abi;
 
 const ADDRESS_ERROR = 'Invalid address';
 const INSTANCE_ERROR = 'Cannot create token distribution instance';

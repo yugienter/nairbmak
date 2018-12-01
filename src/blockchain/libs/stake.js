@@ -1,5 +1,5 @@
 var EventEmitter = require('events');
-var STAKE_ABI = require('../build/contracts/STAKE.json').abi;
+var STAKE_ABI = require('../api/contracts/STAKE.json').abi;
 
 const ADDRESS_ERROR = 'Invalid address';
 const INSTANCE_ERROR = 'Cannot create STAKE instance';
