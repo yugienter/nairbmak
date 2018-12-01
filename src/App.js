@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import config from 'config';
-import { Metamask, Token } from '@kambria/contract-cli';
+import Metamask from 'blockchain/libs/metamask';
+import Work from 'blockchain/libs/work';
 
 import 'static/styles/index.css';
 import logo from 'logo.png';
@@ -36,7 +37,7 @@ class App extends React.Component {
     };
 
     this.metamask = new Metamask();
-    this.token = new Token(config.eth.KATT.ADDRESS, config.eth.KATT.DECIMALS, this.metamask.web3);
+    this.work = new Work(config.eth.WORK.ADDRESS, this.metamask.web3);
     this.tWatcher = null;
 
     this.init();
@@ -55,20 +56,17 @@ class App extends React.Component {
     this.metamask.fetch().then(re => {
       this.getStatusAndUpdateInfo(re);
 
-      this.token.watch(re.ACCOUNT).then(tWatcher => {
+      this.work.watch(re.ACCOUNT).then(tWatcher => {
         this.tWatcher = tWatcher;
         this.tWatcher.event.on("data", re => {
-          console.log("re.BALANCE", re.BALANCE);
           this.props.updateInfo({ TOKEN_BALANCE: re.BALANCE });
         });
         tWatcher.event.on("error", er => {
-          console.log(er);
           this.props.updateInfo({ TOKEN_BALANCE: 0 });
         });
       });
     })
       .catch(er => {
-        console.log(er);
         var updateData = {
           NETWORK: null,
           NETWORK_NAME: null,
@@ -81,16 +79,11 @@ class App extends React.Component {
       });
 
     // Watch metamask & token
-    this.metamask
-      .watch()
-      .then(watcher => {
-        console.log("watcher", watcher);
+    this.metamask.watch().then(watcher => {
         watcher.event.on("data", re => {
-          console.log("watcher re", re);
           this.props.updateInfo(re); //blockchain reload so don't care about data
         });
         watcher.event.on("error", er => {
-          console.log(er);
           var updateData = {
             NETWORK: null,
             NETWORK_NAME: null,
@@ -101,9 +94,7 @@ class App extends React.Component {
           };
           this.getStatusAndUpdateInfo(updateData);
         });
-      })
-      .catch(er => {
-        console.log(er);
+      }).catch(er => {
         var updateData = {
           NETWORK: null,
           NETWORK_NAME: null,
@@ -121,7 +112,7 @@ class App extends React.Component {
     this.metamask.metaStatus(config.eth.NETWORK).then(re => {
       re.message = this.returnMessageForMetaStatus(re.code);
       data = Object.assign(re, data);
-      this.token.metaStatus().then(tmetaStt => {
+      this.work.metaStatus().then(tmetaStt => {
         data = Object.assign({}, data, tmetaStt);
         this.props.updateInfo(data);
       }).catch(ertmetaStt => {
