@@ -84,6 +84,9 @@ class Report extends React.Component {
       visibleModal1:false,
       visibleModal2:false,
       visibleModalReviewersAndReferences:false,
+      visibleModalDone: false,
+      messageDone: '',
+      hashData: '',
       reviewers:'',
       references:'',
       ThuocNghiNgoJson: "",
@@ -257,7 +260,39 @@ class Report extends React.Component {
   }
 
   updateModalReviewersAndReferences = () => {
-    this.setState({ visibleModalReviewersAndReferences: false });
+    let reviewers;
+    let references;
+    if(this.state.reviewers){
+      reviewers = this.state.reviewers.replace(/\n/g,'').replace(/ /g,'').split(",");
+    }
+    if(this.state.references){
+      references = this.state.references.replace(/\n/g,' ').trim().split(",");
+    }
+    this.database.submitReport(this.state.hashData, reviewers, references)
+      .then(re=>{
+        console.log(re);
+        this.setState({
+          visibleModalReviewersAndReferences: false,
+          visibleModalDone: true,
+          messageDone:'Tài liệu đã được hoàn tất.'
+        });
+      })
+      .catch(err=>{
+        console.log(err);
+        this.setState({
+          visibleModalReviewersAndReferences: false,
+          visibleModalDone: true,
+          messageDone:'Có lỗi xảy ra, vui lòng thử lại.'
+        });
+      });
+
+  }
+
+  closeModalDone = () => {
+    this.setState({
+      visibleModalDone: false,
+      messageDone:''
+    });
   }
 
   submitForm = () => {
@@ -279,7 +314,10 @@ class Report extends React.Component {
       console.log('=== saveAdrReport ===', data);
       if(data){
         //show popup to input array reviewers and references
-        this.setState({visibleModalReviewersAndReferences : true});
+        this.setState({
+          hashData : data.hash,
+          visibleModalReviewersAndReferences : true
+        });
       }
       // this.database.submitReport()
     });
@@ -802,10 +840,22 @@ class Report extends React.Component {
             <div className="modal-body">
               <button type="button" className="close-button" onClick={this.closeModalReviewersAndReferences}/>
               <div className="content">
-                <input type="text" name="reviewers" placeholder="Danh sách địa chỉ người đánh giá" onChange={this.handleInput} value={this.state.reviewers}/>
-                <input type="text" name="references" placeholder="Danh sách tài liệu tham khảo" onChange={this.handleInput} value={this.state.references}/>
+                <textarea onChange={this.handleInput} placeholder="Danh sách địa chỉ người đánh giá" name="reviewers" style={{ width: "98%", float: "left" }} rows="8" value={this.state.reviewers} />
+                <textarea onChange={this.handleInput} placeholder="Danh sách tài liệu tham khảo" name="references" style={{ width: "98%", float: "left" }} rows="8" value={this.state.references} />
               </div>
               <input type="button" className="button" value="Thêm mới" onClick={this.updateModalReviewersAndReferences}/>
+              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+            </div>
+          </div>
+        </Modal>
+        <Modal visible={this.state.visibleModalDone} dialogClassName="modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body">
+              <button type="button" className="close-button" onClick={this.closeModalDone}/>
+              <div className="content">
+              <span className="title">{this.state.messageDone}</span>
+              </div>
+              <input type="button" className="button" value="Đóng" onClick={this.closeModalDone}/>
               {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
             </div>
           </div>
