@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { saveAdrReport } from "../../redux/actions/adrReport.action.js";
+import { getAdrReport } from "../../redux/actions/adrReport.action.js";
 
 import "static/styles/contentForm.css";
 import TopActionsBar from 'views/components/core/TopActionsBar';
@@ -63,6 +63,9 @@ class ViewReport extends React.Component {
 
   showData = () => {
     console.log(this.state.inputHashData);
+    this.props.getAdrReport({
+      hash: this.state.inputHashData
+    })
   }
 
   render() {
@@ -74,7 +77,7 @@ class ViewReport extends React.Component {
         </div>
         <main className="main bg-white">
           <div id="wrap-form">
-              <input name="inputHashData" style={{ width: "40%" }} type="text" onChange={this.handleInput} value={this.state.inputHashData} />
+              <input name="inputHashData" style={{ width: "40%" }} type="text" onChange={this.handleInputHashData} value={this.state.inputHashData} />
               <input type="button" className="button" value="Load data" onClick={this.showData}/>
               <form id="form">
                   <div className="boxes-form" id="box2">
@@ -472,10 +475,11 @@ class ViewReport extends React.Component {
 
 const mapStateToProps = state => ({
   blockchain: state.blockchain,
+  ...state.adrReport.report.publicInfo
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveAdrReport: (options, callback) => dispatch(saveAdrReport(options, callback)),
+  getAdrReport: (options, callback) => dispatch(getAdrReport(options, callback)),
   updateMessageStatus: (options, callback) => dispatch(updateMessageStatus(options, callback)),
 });
 

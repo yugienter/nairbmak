@@ -25,3 +25,29 @@ export const saveAdrReport = (params, callback) => {
     });
   };
 };
+
+export const getAdrReport = (params, callback) => {
+
+  return dispatch => {
+    dispatch({ type: types.GET_ADR_REPORT });
+    client.api(
+      'adr-report/get',
+      {
+        params: params
+      }
+    )
+    .then(res => {
+      dispatch({
+        type: types.GET_ADR_REPORT_SUCCESSFUL,
+        data: res.data.data
+      });
+      callback && callback(res.data);
+    })
+    .catch(err => {
+      dispatch({
+        type: types.GET_ADR_REPORT_FAILED,
+        data: err.message
+      })
+    });
+  };
+};
