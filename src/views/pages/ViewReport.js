@@ -8,6 +8,7 @@ import { updateMessageStatus } from 'redux/actions/ui.action';
 
 import Metamask from 'blockchain/libs/metamask';
 import Database from 'blockchain/libs/database';
+import Modal from 'react-bootstrap4-modal';
 import config from 'config';
 
 class ViewReport extends React.Component {
@@ -19,6 +20,12 @@ class ViewReport extends React.Component {
 
     this.state = {
       inputHashData: '',
+      visibleModalScore:false,
+      visibleModalClose:false,
+      messageModalClose:'',
+      inputNumberClose:'',
+      selectNumber:10,
+      inputNumber:0
     };
   }
 
@@ -68,6 +75,41 @@ class ViewReport extends React.Component {
     })
   }
 
+  handleClickBtnScore = (e) => {
+    e.preventDefault();
+    this.setState({visibleModalScore : true});
+  };
+
+  closeModalScore = () => {
+    this.setState({visibleModalScore : false});
+  }
+
+  handleNumber = e => {
+    let { name, value } = e.target;
+    this.setState({ [name] : value});
+  };
+
+  handleClickBtnClose = (e) => {
+    e.preventDefault();
+    this.setState({visibleModalClose : true});
+  };
+
+  closeModalClose = () => {
+    this.setState({visibleModalClose : false});
+  }
+
+  handleModalClose = () => {
+    this.database.closeReport(this.state.inputNumberClose)
+      .then(re => {
+        console.log(re);
+        this.setState({messageModalClose : "Thành công."});
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({messageModalClose : "Đã có lỗi xảy ra."});
+      })
+  }
+
   render() {
     return (
       <div id="site_wrapper">
@@ -76,6 +118,15 @@ class ViewReport extends React.Component {
           <TopActionsBar />
         </div>
         <main className="main bg-white">
+          <a className="fab-buy" href="#">
+            Buy
+          </a>
+          <a className="fab-score" href="#" onClick={this.handleClickBtnScore}>
+            Score
+          </a>
+          <a className="fab-close" href="#" onClick={this.handleClickBtnClose}>
+            Close
+          </a>
           <div id="wrap-form">
               <input name="inputHashData" style={{ width: "40%" }} type="text" onChange={this.handleInputHashData} value={this.state.inputHashData} />
               <input type="button" className="button" value="Load data" onClick={this.showData}/>
@@ -465,6 +516,43 @@ class ViewReport extends React.Component {
                   <input type="hidden" name="ThuocDongThoiJson" id="ThuocDongThoiJson" />
               </form>
           </div>
+          <Modal visible={this.state.visibleModalScore} dialogClassName="modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body">
+                <button type="button" className="close-button" onClick={this.closeModalScore}/>
+                <div className="content">
+                {/* <span className="title">{this.state.messageDone}</span> */}
+                <select name="selectNumber" onChange={this.handleNumber} value={this.state.selectNumber}>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                </select>
+                <input type="text" name="inputNumber" style={{ width: "98%", float: "left" }} placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
+
+                </div>
+                <input type="button" className="button" value="Score" onClick={this.closeModalScore}/>
+                {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+              </div>
+            </div>
+          </Modal>
+          <Modal visible={this.state.visibleModalClose} dialogClassName="modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body">
+                <button type="button" className="close-button" onClick={this.closeModalClose}/>
+                <div className="content">
+                {this.state.messageModalClose
+                ?
+                <span className="title">{this.state.messageModalClose}</span>
+                :
+                <input type="text" name="inputNumberClose" style={{ width: "98%", float: "left" }} placeholder="Just input number" value={this.state.inputNumberClose} onChange={this.handleNumber} />
+              }
+                </div>
+                <input type="button" className="button" value="Close" onClick={this.handleModalClose}/>
+                {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+              </div>
+            </div>
+          </Modal>
         </main>
         {this.props.footer}
       </div>

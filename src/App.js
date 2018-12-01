@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import config from 'config';
 import Metamask from 'blockchain/libs/metamask';
 import Work from 'blockchain/libs/work';
-import Database from 'blockchain/libs/database';
 
 import 'static/styles/index.css';
 import logo from 'logo.png';
@@ -21,7 +20,6 @@ import Error404 from './views/errors/404';
 
 import { updateInfo } from "redux/actions/blockchain.action";
 import BlockchainAlert from "views/components/core/BlockchainAlert";
-import Modal from 'react-bootstrap4-modal';
 
 
 class App extends React.Component {
@@ -40,16 +38,10 @@ class App extends React.Component {
         { url: '/share', title: 'Share', exact: false },
         { url: '/explorer', title: 'Explorer', exact: false }
       ],
-      visibleModalScore:false,
-      visibleModalClose:false,
-      inputNumberClose:0,
-      selectNumber:10,
-      inputNumber:0
     };
 
     this.metamask = new Metamask();
     this.work = new Work(config.eth.WORK.ADDRESS, this.metamask.web3);
-    this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
     this.tWatcher = null;
 
     this.init();
@@ -171,89 +163,12 @@ class App extends React.Component {
     return message;
   }
 
-  handleClickBtnScore = (e) => {
-    e.preventDefault();
-    this.setState({visibleModalScore : true});
-  };
-
-  closeModalScore = () => {
-    this.setState({visibleModalScore : false});
-  }
-
-  handleNumber = e => {
-    let { name, value } = e.target;
-    this.setState({ [name] : value});
-  };
-
-  handleClickBtnClose = (e) => {
-    e.preventDefault();
-    this.setState({visibleModalClose : true});
-  };
-
-  closeModalClose = () => {
-    this.setState({visibleModalClose : false});
-  }
-
-  handleModalClose = () => {
-    if( Number.isInteger(this.state.inputNumberClose) ){
-      this.database.closeReport(this.state.inputNumberClose)
-        .then(re => {
-          this.setState({visibleModalClose : false});
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    }
-  }
-
   render() {
     const header =
       <section>
         {
           this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1} />
         }
-        <a className="fab-buy" href="#">
-          Buy
-        </a>
-        <a className="fab-score" href="#" onClick={this.handleClickBtnScore}>
-          Score
-        </a>
-        <a className="fab-close" href="#" onClick={this.handleClickBtnClose}>
-          Close
-        </a>
-        <Modal visible={this.state.visibleModalScore} dialogClassName="modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-body">
-              <button type="button" className="close-button" onClick={this.closeModalScore}/>
-              <div className="content">
-              {/* <span className="title">{this.state.messageDone}</span> */}
-              <select name="selectNumber" onChange={this.handleNumber} value={this.state.selectNumber}>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-              </select>
-              <input type="text" name="inputNumber" style={{ width: "98%", float: "left" }} placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
-
-              </div>
-              <input type="button" className="button" value="Score" onClick={this.handleModalClose}/>
-              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
-            </div>
-          </div>
-        </Modal>
-        <Modal visible={this.state.visibleModalClose} dialogClassName="modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-body">
-              <button type="button" className="close-button" onClick={this.closeModalClose}/>
-              <div className="content">
-              <input type="text" name="inputNumberClose" style={{ width: "98%", float: "left" }} placeholder="Just input number" value={this.state.inputNumberClose} onChange={this.handleNumber} />
-              </div>
-              <input type="button" className="button" value="Close" onClick={this.closeModalClose}/>
-              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
-            </div>
-          </div>
-        </Modal>
-
         <Header logo={this.state.logo}>
           <Nav>
             {this.state.nav.map((item, index) => <NavItem key={index} item={item} />)}
