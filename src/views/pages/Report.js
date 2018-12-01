@@ -1,9 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { saveAdrReport } from '../../redux/actions/adrReport.action.js';
 
-import { sampleAction } from "redux/actions/sample.action.js";
 import "static/styles/contentForm.css";
 
 class Report extends React.Component {
@@ -35,7 +34,6 @@ class Report extends React.Component {
         ThuocDongThoiJson: '',
       },
     };
-    console.log(props);
   }
 
   componentDidMount() {}
@@ -48,6 +46,10 @@ class Report extends React.Component {
   handleSelected = (e) => {
     let { name, value} = e.target;
     this.setState({ reportContent: {...this.state.reportContent, [name]: value } });
+  }
+
+  handleSubmitReport = () => {
+    this.props.saveAdrReport(this.state.reportContent);
   }
 
 
@@ -694,6 +696,7 @@ class Report extends React.Component {
                   className="button"
                   type="button"
                   value="Nộp báo cáo"
+                  onClick={this.handleSubmitReport}
                 />
                 <input
                   id="btnClearForm"
@@ -723,16 +726,12 @@ class Report extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  sample: state.sample
+  isSavingReport: state.adrReport.isSavingReport
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      sampleAction
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => ({
+  saveAdrReport: (options) => dispatch(saveAdrReport(options))
+});
 
 export default withRouter(
   connect(
