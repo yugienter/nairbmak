@@ -18,7 +18,6 @@ const Error404 = (props) =>
             </div>
           </div>
         </div>
-        {props.footer}
       </div>;
 
 export default Error404;

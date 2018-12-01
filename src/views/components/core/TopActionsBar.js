@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import icId from 'static/svg/ic-id.svg';
-import icCart from 'static/svg/ic-cart.svg';
 import icBalance from 'static/svg/ic-balance.svg';
 import icHistory from 'static/svg/ic-history.svg';
 
@@ -45,25 +44,11 @@ class TopActionsBar extends Component {
           </ul>
           <ul>
             <li>
-              <Link to="/cart" className="item">
-                <span className="icon">
-                  {this.props.totalItems > 0
-                    ? <span className="badge badge-danger">
-                      {this.props.totalItems}
-                    </span>
-                    : null}
-
-                  <img src={icCart} className="iccart" alt="iccard" />
-                </span>
-                <span className="text">Cart</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/order-history" className="item">
+              <Link to="/explorer" className="item">
                 <span className="icon">
                   <img src={icHistory} className="ichistory" alt="ichistory" />
                 </span>
-                <span className="text">Order History</span>
+                <span className="text">Explorer</span>
               </Link>
             </li>
           </ul>

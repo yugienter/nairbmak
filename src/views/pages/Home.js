@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
-import lego from 'static/images/lego.png';
-import { Button } from '@kambria/kambria-lego';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import lego from 'static/images/pill.png';
 
 import { updateMessageStatus } from 'redux/actions/ui.action';
 import TopActionsBar from 'views/components/core/TopActionsBar';
@@ -61,16 +58,10 @@ class Home extends React.Component {
           <div className="container text-center" style={{marginTop: 40}}>
             <img src={lego} className="lego-logo" alt="Lego logo" />
             <hr />
-            <h1>Welcome to Nairbmak Lego!</h1>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-            <p>
-              <Button type="secondary" icon={<FontAwesomeIcon icon={faCoffee} />} onButtonClick={this.onButtonClick}>Learn More</Button>
-            </p>
+            <h1>Welcome to Nairbmak!</h1>
+            <p>Drug distribution information</p>
           </div>
         </main>
-        {this.props.footer}
       </div>);
   }
 }

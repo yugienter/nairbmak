@@ -30,7 +30,6 @@ const Fail = (props) =>
           </div>
         </div>
       </div>
-      {props.footer}
     </div>;
 
 export default Fail;
