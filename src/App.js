@@ -10,7 +10,7 @@ import Work from 'blockchain/libs/work';
 import 'static/styles/index.css';
 import logo from 'logo.png';
 
-import { Header, Footer, Nav, NavItem, PageLoader } from '@kambria/kambria-lego';
+import { Header, Nav, NavItem, PageLoader } from '@kambria/kambria-lego';
 
 import routes from 'routes';
 import { PrivateRouteWithRender } from 'routes/types';
@@ -176,15 +176,12 @@ class App extends React.Component {
         </Header>;
     </section>
 
-
-    const footer = <Footer />;
-
     return (
       <Switch>
         {
-          routes.map((route, i) => route.type === 'public' ? <Route exact key={i} path={route.path} render={(props) => <route.component {...props} header={header} footer={footer} />} /> : <PrivateRouteWithRender exact key={i} condition={this.validateUser()} path={route.path} success={route.component} failure={Fail} header={header} footer={footer} />)
+          routes.map((route, i) => route.type === 'public' ? <Route exact key={i} path={route.path} render={(props) => <route.component {...props} header={header} />} /> : <PrivateRouteWithRender exact key={i} condition={this.validateUser()} path={route.path} success={route.component} failure={Fail} header={header} />)
         }
-        <Route render={(props) => <Error404 {...props} header={header} footer={footer} />} />
+        <Route render={(props) => <Error404 {...props} header={header} />} />
       </Switch>
     );
   }

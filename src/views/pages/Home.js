@@ -62,7 +62,6 @@ class Home extends React.Component {
             <p>Drug distribution information</p>
           </div>
         </main>
-        {this.props.footer}
       </div>);
   }
 }

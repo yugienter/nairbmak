@@ -29,7 +29,6 @@ class Sample extends React.Component {
           <a className='btn btn-sm btn-success' onClick={() => this.props.sampleAction('Hello World!')}>Sample Action: {this.props.sample.text}</a>
         </div>
       </main>
-      {this.props.footer}
     </div>;
   }
 }

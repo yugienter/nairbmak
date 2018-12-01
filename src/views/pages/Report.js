@@ -268,6 +268,7 @@ class Report extends React.Component {
     if(this.state.references){
       references = this.state.references.replace(/\n/g,' ').trim().split(",");
     }
+    console.log(this.state.hashData,reviewers,references)
     this.database.submitReport(this.state.hashData, reviewers, references)
       .then(re=>{
         console.log(re);
@@ -715,7 +716,6 @@ class Report extends React.Component {
               </form>
           </div>
         </main>
-        {this.props.footer}
 
         <Modal id="thuoc-nn-modal" visible={this.state.visibleModal1} dialogClassName="modal-dialog-centered">
           <div className="modal-content">
