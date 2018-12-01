@@ -77,7 +77,7 @@ class Metamask {
       if (!window.web3 || !window.web3.currentProvider) return reject(STATUS.NO_METAMASK_INSTALLED);
       self.getNetwork().then((net) => {
         self.getAccount().then(acc => {
-          if (netcode && netcode != net) return reject(STATUS.METAMASK_FOUND_LOGGED_IN_NETWORK_INVALID);
+          if (netcode && netcode !== net) return reject(STATUS.METAMASK_FOUND_LOGGED_IN_NETWORK_INVALID);
           return resolve(STATUS.METAMASK_LOGGED_IN);
         }).catch(er => {
           if (er) reject(STATUS.METAMASK_FOUND_NO_LOGGED_IN);

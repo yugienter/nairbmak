@@ -445,7 +445,7 @@ class Report extends React.Component {
                           </table>
                           <p className="bt">
                               {/* <Button type="primary" customStyle={{ "display": "block", "margin": "0 auto 20px"}} onClick={e=> (e.preventDefault(), this.openModal1())} >Thêm mới</Button> */}
-                              <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.openModal1())}/>
+                              <input type="button" className="button" value="Thêm mới" onClick={this.openModal1}/>
                           </p>
                       </div>
                       <div style={{ marginTop: "65px" }}>
@@ -485,7 +485,7 @@ class Report extends React.Component {
                           </table>
                           <p className="bt">
                             {/* <Button type="primary" customStyle={{ "display": "block", "margin": "0 auto 20px"}} onClick={e=> (e.preventDefault(), this.openModal1())} >Thêm mới</Button> */}
-                              <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.openModal2())}/>
+                              <input type="button" className="button" value="Thêm mới" onClick={this.openModal2}/>
                           </p>
                       </div>
                   </div>
@@ -635,7 +635,7 @@ class Report extends React.Component {
                       </table>
                   </div>
                   <p className="bt-end-form">
-                      <input type="button" className="button" value="Nộp báo cáo" onClick={e=> (e.preventDefault(), this.submitForm())}/>
+                      <input type="button" className="button" value="Nộp báo cáo" onClick={this.submitForm}/>
 
                   </p>
                   <input type="hidden" name="ThuocNghiNgoJson" id="ThuocNghiNgoJson" />
@@ -656,7 +656,7 @@ class Report extends React.Component {
                 <input type="text" name="DangBaoCheThuocNN" placeholder="Dạng bào chế" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.DangBaoCheThuocNN}/>
                 <input type="text" name="NhaSanXuatThuocNN" placeholder="Nhà Sản Xuất Thuốc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NhaSanXuatThuocNN}/>
                 <input type="text" name="LieuDungMotLanThuocNN" placeholder="Liều Dùng Một Lần" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.LieuDungMotLanThuocNN}/>
-                <select name="DonViLieuDungMotLanThuocNN" value="" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViLieuDungMotLanThuocNN}>
+                <select name="DonViLieuDungMotLanThuocNN" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViLieuDungMotLanThuocNN}>
                   <option value="G">G</option>
                   <option value="mg">mg</option>
                   <option value="mcg">mcg</option>
@@ -671,7 +671,7 @@ class Report extends React.Component {
                 <input type="text" name="NgayBatDauThuocNN" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayBatDauThuocNN}/>
                 <input type="text" name="NgayKetThucThuocNN" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayKetThucThuocNN}/>
                 <input type="text" name="HamLuongThuocNN" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.HamLuongThuocNN}/>
-                <select name="DonViHamLuongThuocNN" value="" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViHamLuongThuocNN}>
+                <select name="DonViHamLuongThuocNN" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViHamLuongThuocNN}>
                   <option value="G">G</option>
                   <option value="mg">mg</option>
                   <option value="mcg">mcg</option>
@@ -684,7 +684,7 @@ class Report extends React.Component {
                 </select>
                 <input type="text" name="SoLoThuocNN" placeholder="Số Lô" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.SoLoThuocNN}/>
                 <input type="text" name="SoLanDungThuocNN" placeholder="Số lần sử dụng thuốc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.SoLanDungThuocNN}/>Lần/
-                <select name="DonViSoLanDungThuocNN" value="" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViSoLanDungThuocNN}>
+                <select name="DonViSoLanDungThuocNN" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViSoLanDungThuocNN}>
                   <option value="Ngày">Ngày</option>
                   <option value="Tuần">Tuần</option>
                   <option value="Tháng">Tháng</option>
@@ -708,7 +708,7 @@ class Report extends React.Component {
                 <input id="opt15.3" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không tái sử dụng" } onChange={this.handleChangeRadio} value="Không tái sử dụng"/><span lang="en-us"> Không tái sử dụng</span>
                 <input id="opt15.4" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không có thông tin" } onChange={this.handleChangeRadio} value="Không có thông tin" /><span lang="en-us"> Không có thông tin</span>
               </div>
-              <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.updateModal1())}/>
+              <input type="button" className="button" value="Thêm mới" onClick={this.updateModal1}/>
               {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
             </div>
           </div>
@@ -723,7 +723,7 @@ class Report extends React.Component {
                 <input type="text" name="DangBaoCheThuocDDD" placeholder="Dạng bào chế" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.DangBaoCheThuocDDD}/>
                 <input type="text" name="NhaSanXuatThuocDDD" placeholder="Nhà Sản Xuất Thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NhaSanXuatThuocDDD}/>
                 <input type="text" name="LieuDungMotLanThuocDDD" placeholder="Liều Dùng Một Lần" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.LieuDungMotLanThuocDDD}/>
-                <select name="DonViLieuDungMotLanThuocDDD" value="" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViLieuDungMotLanThuocDDD}>
+                <select name="DonViLieuDungMotLanThuocDDD" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViLieuDungMotLanThuocDDD}>
                   <option value="G">G</option>
                   <option value="mg">mg</option>
                   <option value="mcg">mcg</option>
@@ -738,7 +738,7 @@ class Report extends React.Component {
                 <input type="text" name="NgayBatDauThuocDDD" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayBatDauThuocDDD}/>
                 <input type="text" name="NgayKetThucThuocDDD" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayKetThucThuocDDD}/>
                 <input type="text" name="HamLuongThuocDDD" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.HamLuongThuocDDD}/>
-                <select name="DonViHamLuongThuocDDD" value="" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViHamLuongThuocDDD}>
+                <select name="DonViHamLuongThuocDDD" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViHamLuongThuocDDD}>
                   <option value="G">G</option>
                   <option value="mg">mg</option>
                   <option value="mcg">mcg</option>
@@ -751,14 +751,14 @@ class Report extends React.Component {
                 </select>
                 <input type="text" name="SoLoThuocDDD" placeholder="Số Lô" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.SoLoThuocDDD}/>
                 <input type="text" name="SoLanDungThuocDDD" placeholder="Số lần sử dụng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.SoLanDungThuocDDD}/>Lần/
-                <select name="DonViSoLanDungThuocDDD" value="" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViSoLanDungThuocDDD}>
+                <select name="DonViSoLanDungThuocDDD" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViSoLanDungThuocDDD}>
                   <option value="Ngày">Ngày</option>
                   <option value="Tuần">Tuần</option>
                   <option value="Tháng">Tháng</option>
                 </select>
                 <input type="text" name="LyDoDungThuocDDD" placeholder="Lý do sử dụng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.LyDoDungThuocDDD}/>
               </div>
-              <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.updateModal2())}/>
+              <input type="button" className="button" value="Thêm mới" onClick={this.updateModal2}/>
               {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
             </div>
           </div>
@@ -774,7 +774,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveAdrReport: (options, callback) => dispatch(saveAdrReport(options, callback))
+  saveAdrReport: (options, callback) => dispatch(saveAdrReport(options, callback)),
+  updateMessageStatus: (options, callback) => dispatch(updateMessageStatus(options, callback)),
 });
 
 export default connect(
