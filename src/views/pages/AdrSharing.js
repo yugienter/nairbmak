@@ -47,7 +47,7 @@ class AdrSharing extends React.Component {
         <section className='AdrSharing__main'>
           <form onSubmit={this.redeem} className="form-horizontal" id="redeem-form">
             <div className="form-group">
-              <label htmlFor="redeem-address">Milestome</label>
+              <label htmlFor="redeem-address">Milestone</label>
               <input value={this.state.milestone} onChange={this.onChangeAddress} type="text" className={"form-control "} id="redeem-address" name="redeem-address" />
             </div>
             <div className="form-group">
