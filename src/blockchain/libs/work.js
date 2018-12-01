@@ -38,7 +38,6 @@ class Token {
 
     if (!TOKEN_ABI) return false;
     if (!TOKEN_ADDRESS || !this.web3.isAddress(TOKEN_ADDRESS)) return false;
-    console.log(1, TOKEN_ABI,TOKEN_ADDRESS)
     var CONTRACT = this.web3.eth.contract(TOKEN_ABI).at(TOKEN_ADDRESS);
 
     this.TOKEN = {
