@@ -6,8 +6,5 @@ import Report from 'views/pages/Report';
 
 export default [
   { path: "/", component: Home, type: 'public' },
-  { path: "/kambria-components", component: KambriaComponents, type: 'private' },
-  { path: "/bootstrap-components", component: BootstrapComponents, type: 'private' },
-  { path: "/redux", component: Redux, type: 'private' },
   { path: "/report", component: Report, type: 'public' }
 ];

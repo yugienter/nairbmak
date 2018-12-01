@@ -1,10 +1,12 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { saveAdrReport } from '../../redux/actions/adrReport.action.js';
+import { bindActionCreators } from 'redux';
+
 
 import "static/styles/contentForm.css";
 import Modal from 'react-bootstrap4-modal';
+import TopActionsBar from 'views/components/core/TopActionsBar';
+import { updateMessageStatus } from 'redux/actions/ui.action';
 
 class Report extends React.Component {
   constructor(props, context) {
@@ -79,7 +81,39 @@ class Report extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  showBlinkMessage() {
+    //this function to scroll top and make blik 3s
+    var bodyElement = document.getElementsByTagName('body')[0];
+    bodyElement.style.height = null;
+    window.scrollTo(0, 0);
+    if (bodyElement.style.height === null) {
+      bodyElement.style.height = '100%';
+    }
+    var blockchainAlert = document.getElementsByClassName('blockchain-alert');
+    if (blockchainAlert.length) {
+      blockchainAlert[0].classList.add('blink');
+      window.clearTimeout(this.timeout);
+      this.timeout = window.setTimeout(() => {
+        blockchainAlert[0].classList.remove('blink');
+      }, 3000);
+    }
+  }
+
+  updateMessageStatus(code) {
+    if (code && ![200, 201].includes(code)) {
+      this.props.updateMessageStatus(true);
+    }
+  }
+
+  componentDidMount() {
+    this.updateMessageStatus(this.props.blockchain.code);
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.blockchain.code !== nextProps.blockchain.code) {
+      this.updateMessageStatus(nextProps.blockchain.code);
+    }
+  }
 
   handleInput = e => {
     let { name, value } = e.target;
@@ -222,7 +256,10 @@ class Report extends React.Component {
   render() {
     return (
       <div id="site_wrapper">
-        <div className="site-upper">{this.props.header}</div>
+        <div className="site-upper">
+          {this.props.header}
+          <TopActionsBar />
+        </div>
         <main className="main bg-white">
           <div id="wrap-form">
               <form id="form">
@@ -735,16 +772,14 @@ class Report extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isSavingReport: state.adrReport.isSavingReport
+  blockchain: state.blockchain,
 });
 
-const mapDispatchToProps = dispatch => ({
-  saveAdrReport: (options) => dispatch(saveAdrReport(options))
-});
+const mapDispatchToProps = dispatch => bindActionCreators({
+  updateMessageStatus
+}, dispatch);
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Report)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Report);
