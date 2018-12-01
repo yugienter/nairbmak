@@ -20,6 +20,7 @@ import Error404 from './views/errors/404';
 
 import { updateInfo } from "redux/actions/blockchain.action";
 import BlockchainAlert from "views/components/core/BlockchainAlert";
+import Modal from 'react-bootstrap4-modal';
 
 
 class App extends React.Component {
@@ -36,7 +37,10 @@ class App extends React.Component {
         { url: '/view-report', title: 'ViewReport', exact: false },
         { url: '/share', title: 'Share', exact: false },
         { url: '/explorer', title: 'Explorer', exact: false }
-      ]
+      ],
+      visibleModalScore:false,
+      selectNumber:'',
+      inputNumber:''
     };
 
     this.metamask = new Metamask();
@@ -162,19 +166,63 @@ class App extends React.Component {
     return message;
   }
 
+  handleClickBtnScore = (e) => {
+    e.preventDefault();
+    this.setState({visibleModalScore : true});
+  };
+
+  closeModalScore = () => {
+    this.setState({visibleModalScore : false});
+  }
+
+  handleNumber = e => {
+    let { value } = e.target;
+    this.setState({ selectNumber : value});
+  };
+
   render() {
     const header =
       <section>
         {
           this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1} />
         }
+        <a className="fab-buy" href="/buy">
+          Buy
+        </a>
+        <a className="fab-score" href="#" onClick={this.handleClickBtnScore}>
+          Score
+        </a>
+        <a className="fab-close" href="/buy">
+          Close
+        </a>
+        <Modal visible={this.state.visibleModalScore} dialogClassName="modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body">
+              <button type="button" className="close-button" onClick={this.closeModalScore}/>
+              <div className="content">
+              {/* <span className="title">{this.state.messageDone}</span> */}
+              <select name="selectNumber" onChange={this.handleNumber} value={this.state.selectNumber}>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+              </select>
+              <input type="text" name="inputNumber" placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
+
+              </div>
+              <input type="button" className="button" value="Đóng" onClick={this.closeModalScore}/>
+              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+            </div>
+          </div>
+        </Modal>
+
         <Header logo={this.state.logo}>
           <Nav>
             {this.state.nav.map((item, index) => <NavItem key={index} item={item} />)}
           </Nav>
           {this.props.ui.status === 'loading' && <PageLoader type='top' />}
         </Header>;
-    </section>
+      </section>
 
     return (
       <Switch>

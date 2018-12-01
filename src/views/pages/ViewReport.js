@@ -9,7 +9,6 @@ import { updateMessageStatus } from 'redux/actions/ui.action';
 import Metamask from 'blockchain/libs/metamask';
 import Database from 'blockchain/libs/database';
 import config from 'config';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ViewReport extends React.Component {
   constructor(props, context) {
@@ -77,15 +76,6 @@ class ViewReport extends React.Component {
           <TopActionsBar />
         </div>
         <main className="main bg-white">
-          <a className="fab-buy" href="/buy">
-            Buy
-          </a>
-          <a className="fab-score" href="/buy">
-            Score
-          </a>
-          <a className="fab-close" href="/buy">
-            Close
-          </a>
           <div id="wrap-form">
               <input name="inputHashData" style={{ width: "40%" }} type="text" onChange={this.handleInputHashData} value={this.state.inputHashData} />
               <input type="button" className="button" value="Load data" onClick={this.showData}/>
