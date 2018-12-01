@@ -344,7 +344,55 @@ label.error {
   left: 16px;
   cursor: pointer;
 }
+
+.fab-buy {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  box-shadow: 1px 4px 20px rgba(0,0,0,0.5);
+  background: #2C323C;
+  position: fixed;
+  bottom: 30px;
+  right: 180px;
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fab-score {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  box-shadow: 1px 4px 20px rgba(0,0,0,0.5);
+  background: #2C323C;
+  position: fixed;
+  bottom: 30px;
+  right: 120px;
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fab-close {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  box-shadow: 1px 4px 20px rgba(0,0,0,0.5);
+  background: #2C323C;
+  position: fixed;
+  bottom: 30px;
+  right: 60px;
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*
+#0004ed   mau xanh dac trung
 #1F668B   mau xanh
 #FF7E00   mau cam
 #414141   mau ghi
