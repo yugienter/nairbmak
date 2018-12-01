@@ -31,9 +31,7 @@ class App extends React.Component {
         image: logo
       },
       nav: [
-        { url: '/kambria-components', title: 'Kambria', exact: true },
-        { url: '/bootstrap-components', title: 'Bootstrap', exact: false },
-        { url: '/redux', title: 'Redux', exact: false }
+        { url: '/report', title: 'Report', exact: false }
       ]
     };
 
