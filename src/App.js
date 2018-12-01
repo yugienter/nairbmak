@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import config from 'config';
 import Metamask from 'blockchain/libs/metamask';
 import Work from 'blockchain/libs/work';
+import Database from 'blockchain/libs/database';
 
 import 'static/styles/index.css';
 import logo from 'logo.png';
@@ -27,6 +28,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
       logo: {
         url: '/',
@@ -39,12 +41,15 @@ class App extends React.Component {
         { url: '/explorer', title: 'Explorer', exact: false }
       ],
       visibleModalScore:false,
-      selectNumber:'',
-      inputNumber:''
+      visibleModalClose:false,
+      inputNumberClose:0,
+      selectNumber:10,
+      inputNumber:0
     };
 
     this.metamask = new Metamask();
     this.work = new Work(config.eth.WORK.ADDRESS, this.metamask.web3);
+    this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
     this.tWatcher = null;
 
     this.init();
@@ -176,9 +181,30 @@ class App extends React.Component {
   }
 
   handleNumber = e => {
-    let { value } = e.target;
-    this.setState({ selectNumber : value});
+    let { name, value } = e.target;
+    this.setState({ [name] : value});
   };
+
+  handleClickBtnClose = (e) => {
+    e.preventDefault();
+    this.setState({visibleModalClose : true});
+  };
+
+  closeModalClose = () => {
+    this.setState({visibleModalClose : false});
+  }
+
+  handleModalClose = () => {
+    if( Number.isInteger(this.state.inputNumberClose) ){
+      this.database.closeReport(this.state.inputNumberClose)
+        .then(re => {
+          this.setState({visibleModalClose : false});
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }
 
   render() {
     const header =
@@ -186,13 +212,13 @@ class App extends React.Component {
         {
           this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1} />
         }
-        <a className="fab-buy" href="/buy">
+        <a className="fab-buy" href="#">
           Buy
         </a>
         <a className="fab-score" href="#" onClick={this.handleClickBtnScore}>
           Score
         </a>
-        <a className="fab-close" href="/buy">
+        <a className="fab-close" href="#" onClick={this.handleClickBtnClose}>
           Close
         </a>
         <Modal visible={this.state.visibleModalScore} dialogClassName="modal-dialog-centered">
@@ -210,7 +236,19 @@ class App extends React.Component {
               <input type="text" name="inputNumber" style={{ width: "98%", float: "left" }} placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
 
               </div>
-              <input type="button" className="button" value="Đóng" onClick={this.closeModalScore}/>
+              <input type="button" className="button" value="Score" onClick={this.handleModalClose}/>
+              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+            </div>
+          </div>
+        </Modal>
+        <Modal visible={this.state.visibleModalClose} dialogClassName="modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body">
+              <button type="button" className="close-button" onClick={this.closeModalClose}/>
+              <div className="content">
+              <input type="text" name="inputNumberClose" style={{ width: "98%", float: "left" }} placeholder="Just input number" value={this.state.inputNumberClose} onChange={this.handleNumber} />
+              </div>
+              <input type="button" className="button" value="Close" onClick={this.closeModalClose}/>
               {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
             </div>
           </div>
