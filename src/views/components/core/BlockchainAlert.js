@@ -12,8 +12,8 @@ const BlockchainAlert = (props) => {
     case 400: //status:NO_METAMASK_INSTALLED
       message = "Metamask not installed. Some functionalities may not be accessible on this site.";
       break;
-    case 405: //status:METAMASK_FOUND_NO_KAT
-      message = "Your account does not have KAT. Some functionalities may not be accessible on this site.";
+    case 405: //status:METAMASK_FOUND_NO_WORK
+      message = "Your account does not have WORK. Some functionalities may not be accessible on this site.";
       break;
     default:
       message = props.blockchain.message;

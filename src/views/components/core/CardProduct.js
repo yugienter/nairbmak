@@ -11,7 +11,7 @@ const CardProduct = (props) => {
   return <Card className={className}>
     <Link to={`/product/${props.data._id}`}>
       <CardImg imgSrc={props.data.thumbnail}>
-        <span className="value">{props.data.price} KAT</span>
+        <span className="value">{props.data.price} WORK</span>
       </CardImg>
     </Link>
     <CardBody>
