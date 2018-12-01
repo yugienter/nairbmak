@@ -33,6 +33,7 @@ class App extends React.Component {
       },
       nav: [
         { url: '/report', title: 'Report', exact: false },
+        { url: '/view-report', title: 'ViewReport', exact: false },
         { url: '/share', title: 'Share', exact: false },
         { url: '/explorer', title: 'Explorer', exact: false }
       ]
