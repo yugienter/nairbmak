@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Metamask from 'blockchain/libs/metamask';
 import Database from 'blockchain/libs/database';
 import config from 'config';
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class Explorer extends React.Component {
   constructor(props) {
@@ -15,60 +15,55 @@ class Explorer extends React.Component {
     this.metamask = new Metamask();
     this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
 
-    this.fetchReport("0x6a572F664f13831304835FF9CFd37174FdBD2DcD",(er,re)=>{
-      console.log(re)
-    })
+    this.fetchReport("0x6a572F664f13831304835FF9CFd37174FdBD2DcD")
   }
 
-  fetchReport(address,callback) {
-    var reports=[];
-    for(var i=0;i<10;i++){
-      console.log(this)
-      this.database.getReportInfo(address,i).then(re=>{
-        reports.push[re];
-        if(!re || i===9){
-          return callback(null,reports);
+  fetchReport(address) {
+    for (var i = 0; i < 10; i++) {
+      this.database.getBasicReportInfo(address, i).then(re => {
+        if(re[0] != '0x'){
+          // Add re to array here
         }
-      }).catch(er=>{
+      }).catch(er => {
         console.log(er);
-        return callback(er,null);
       })
     }
   }
 
-  componentDidMount() {
-    $(document).ready(function() {
-      var question = $(".faqs .question");
-      var answer = $(".faqs .answer");
-      $(question).on("click", function() {
-        $(answer).slideUp("fast");
-        $(question).removeClass("active");
-        if (
-          $(this)
-            .next()
-            .css("display") === "none"
-        ) {
-          $(this)
-            .next()
-            .slideDown("fast");
-          $(this)
-            .removeClass("active")
-            .addClass("active");
-        } else if (
-          $(this)
-            .next()
-            .css("display") === "block"
-        ) {
-          $(this)
-            .next()
-            .slideUp("fast");
-          $(this).removeClass("active");
-        }
-      });
-    });
-  }
+  // componentDidMount() {
+  //   $(document).ready(function() {
+  //     var question = $(".faqs .question");
+  //     var answer = $(".faqs .answer");
+  //     $(question).on("click", function() {
+  //       $(answer).slideUp("fast");
+  //       $(question).removeClass("active");
+  //       if (
+  //         $(this)
+  //           .next()
+  //           .css("display") === "none"
+  //       ) {
+  //         $(this)
+  //           .next()
+  //           .slideDown("fast");
+  //         $(this)
+  //           .removeClass("active")
+  //           .addClass("active");
+  //       } else if (
+  //         $(this)
+  //           .next()
+  //           .css("display") === "block"
+  //       ) {
+  //         $(this)
+  //           .next()
+  //           .slideUp("fast");
+  //         $(this).removeClass("active");
+  //       }
+  //     });
+  //   });
+  // }
 
   render() {
+    // console.log(this.state)
     return (
       <div id="site_wrapper" className="contact-wrapper">
         {this.props.header}
