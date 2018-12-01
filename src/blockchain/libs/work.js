@@ -7,7 +7,7 @@ const ACCOUNT_ERROR = 'Cannot get account';
 const ADDRESS_ERROR = 'Invalid address';
 const INSTANCE_ERROR = 'Cannot create WORK instance';
 const STATUS = {
-  METAMASK_FOUND_NO_KAT: {
+  METAMASK_FOUND_NO_WORK: {
     loggedIn: false,
     code: 405,
     status: 'METAMASK_FOUND_NO_WORK',
@@ -60,10 +60,10 @@ class Token {
     var self = this;
     return new Promise((resolve, reject) => {
       self.balanceOf(self.web3.eth.coinbase).then(re => {
-        if (!re) return reject(STATUS.METAMASK_FOUND_NO_KAT);
-        return resolve(STATUS.METAMASK_FOUND_KAT)
+        if (!re) return reject(STATUS.METAMASK_FOUND_NO_WORK);
+        return resolve(STATUS.METAMASK_FOUND_WORK)
       }).catch(er => {
-        if (er) return reject(STATUS.METAMASK_FOUND_NO_KAT);
+        if (er) return reject(STATUS.METAMASK_FOUND_NO_WORK);
       });
     });
   }

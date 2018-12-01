@@ -1,5 +1,5 @@
 var EventEmitter = require('events');
-var Database_ABI = require('../build/contracts/Database.json').abi;
+var Database_ABI = require('../api/contracts/Database.json').abi;
 
 const ADDRESS_ERROR = 'Invalid address';
 const INSTANCE_ERROR = 'Cannot create Database instance';

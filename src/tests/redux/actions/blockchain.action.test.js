@@ -12,7 +12,7 @@ describe('Redux Action: blockchain.action', () => {
       BALANCE: 100,
       CHANGED: 'account',
       TOKEN_BALANCE: 1000,
-      STATUS: 'METAMASK_FOUND_KAT',
+      STATUS: 'METAMASK_FOUND_WORK',
       MESSAGE: 'Ok'
     };
     const expectedAction = {
