@@ -38,7 +38,7 @@ class TopActionsBar extends Component {
                   <img src={icBalance} className="icbalance" alt="icbalance" />
                 </span>
                 <span className="text">
-                  {this.props.balance} KATT
+                  {this.props.balance / 10 ** 18} WORK
                 </span>
               </div>
             </li>
@@ -49,8 +49,8 @@ class TopActionsBar extends Component {
                 <span className="icon">
                   {this.props.totalItems > 0
                     ? <span className="badge badge-danger">
-                        {this.props.totalItems}
-                      </span>
+                      {this.props.totalItems}
+                    </span>
                     : null}
 
                   <img src={icCart} className="iccart" alt="iccard" />

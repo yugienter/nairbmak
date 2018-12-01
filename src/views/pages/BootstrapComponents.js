@@ -65,7 +65,7 @@ const Components = (props) =>
               <CardHeader>Header</CardHeader>
               <CardImg imgSrc="https://loremflickr.com/320/240/paris" altText='Card cap' />
               <div className="card-img-overlay">
-                <h3>50 KATT</h3>
+                <h3>50 WORK</h3>
               </div>
               <CardBody>
                 <CardTitle>Card title</CardTitle>
