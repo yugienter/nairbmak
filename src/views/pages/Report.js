@@ -1,9 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { saveAdrReport } from '../../redux/actions/adrReport.action.js';
 
-import { sampleAction } from "redux/actions/sample.action.js";
 import "static/styles/contentForm.css";
 import Modal from 'react-bootstrap4-modal';
 import { Button } from '@kambria/kambria-lego';
@@ -184,6 +183,10 @@ class Report extends React.Component {
     })
     this.setState({ visibleModal2: false });
   }
+  handleSubmitReport = () => {
+    this.props.saveAdrReport(this.state.reportContent);
+  }
+
 
   render() {
     return (
@@ -396,7 +399,23 @@ class Report extends React.Component {
                                       <th width="150">Lý do dùng thuốc</th>
                                   </tr>
                               </thead>
-                              <tbody />
+                              <tbody >
+                              {
+                                this.state.thuocDungDongThoiADR.map((item,index) => {
+                                  return (
+                                    <tr className="" key={index}>
+                                      <td>{item.TenThuocDDD}</td>
+                                      <td>{item.DangBaoCheThuocDDD}</td>
+                                      <td>{item.LieuDungMotLanThuocDDD}</td>
+                                      <td>{item.DuongDungThuocDDD}</td>
+                                      <td>{item.NgayBatDauThuocDDD}</td>
+                                      <td>{item.NgayKetThucThuocDDD}</td>
+                                      <td>{item.LyDoDungThuocDDD}</td>
+                                    </tr>
+                                  )
+                                })
+                              }
+                              </tbody>
                           </table>
                           <p className="bt">
                             {/* <Button type="primary" customStyle={{ "display": "block", "margin": "0 auto 20px"}} onClick={e=> (e.preventDefault(), this.openModal1())} >Thêm mới</Button> */}
@@ -685,16 +704,12 @@ class Report extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  sample: state.sample
+  isSavingReport: state.adrReport.isSavingReport
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      sampleAction
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => ({
+  saveAdrReport: (options) => dispatch(saveAdrReport(options))
+});
 
 export default withRouter(
   connect(
