@@ -419,7 +419,7 @@ class Report extends React.Component {
                           </table>
                           <p className="bt">
                             {/* <Button type="primary" customStyle={{ "display": "block", "margin": "0 auto 20px"}} onClick={e=> (e.preventDefault(), this.openModal1())} >Thêm mới</Button> */}
-                              {/* <input id="btnAdd16" className="button" type="button" onclick="btnAdd16_click()" value="Thêm mới" /> */}
+                              <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.openModal2())}/>
                           </p>
                       </div>
                   </div>

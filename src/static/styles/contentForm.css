@@ -263,6 +263,87 @@ label.error {
   left: 16px;
   cursor: pointer;
 }
+
+#thuoc-dung-chung {
+  opacity: 1;
+}
+
+#thuoc-dung-chung span.title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 36px;
+    display: block;
+    margin-top: 20px;
+}
+
+#thuoc-dung-chung-modal input[type="text"], select {
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+    color: #282F39;
+}
+#thuoc-dung-chung-modal input ::-webkit-input-placeholder {
+      color: #282F39;
+}
+#thuoc-dung-chung-modal input ::-moz-placeholder {
+      color: #282F39;
+}
+#thuoc-dung-chung-modal span.value {
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px;
+    display: block;
+    margin-top: 10px;
+}
+#thuoc-dung-chung-modal a.button {
+  background-color: #1aeec2;
+  color: #000;
+  border-radius: 16px;
+  padding: 12px 30px;
+  display: block;
+  width: 240px;
+  text-align: center;
+  margin: 0 auto 35px;
+}
+#thuoc-dung-chung-modal .content {
+  padding: 20px;
+  border-top: 1px solid #ECECEC;
+  margin-top: 20px;
+}
+#thuoc-dung-chung-modal ul {
+  list-style-type: square;
+  }
+#thuoc-dung-chung-modal .modal-dialog {
+  max-width: 450px;
+  padding: 0;
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
+}
+#thuoc-dung-chung-modal .modal-dialog .modal-content {
+  border-radius: 8px;
+}
+#thuoc-dung-chung-modal .modal-dialog .modal-body {
+  padding: 0;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.6);
+}
+#thuoc-dung-chung-modal .modal-dialog .close-button {
+  background-image: url(../images/ic-close.png);
+  background-repeat: no-repeat;
+  float: right;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  margin-bottom: -32px;
+  bottom: 16px;
+  left: 16px;
+  cursor: pointer;
+}
 /*
 #1F668B   mau xanh
 #FF7E00   mau cam
