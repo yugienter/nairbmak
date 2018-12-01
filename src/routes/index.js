@@ -9,5 +9,5 @@ export default [
   { path: "/bootstrap-components", component: BootstrapComponents, type: 'private' },
   { path: "/redux", component: Redux, type: 'private' },
   { path: "/report", component: Report, type: 'public' },
-  { path: "/adr-sharing", component: AdrSharing, type: 'public' }
+  { path: "/share", component: AdrSharing, type: 'public' }
 ];
