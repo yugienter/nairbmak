@@ -1,5 +1,5 @@
 var EventEmitter = require('events');
-var TOKEN_ABI = require('../build/contracts/WORK.json').abi;
+var TOKEN_ABI = require('../api/contracts/WORK.json').abi;
 
 // Errors
 const NULL_ERROR = 'Empty event';
