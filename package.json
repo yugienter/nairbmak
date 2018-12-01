@@ -12,6 +12,7 @@
     "i": "^0.3.6",
     "npm": "^6.4.0",
     "react": "^16.4.0",
+    "react-bootstrap4-modal": "^1.7.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

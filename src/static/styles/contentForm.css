@@ -110,11 +110,12 @@ p.bt{
 	text-align:center;
 }
 .button{
-	/* background:url(../images/bg-bt-form.gif) repeat-x left top; */
+  /* background:url(../images/bg-bt-form.gif) repeat-x left top; */
+  background-color: #00edc3;
 	height:30px;
 	cursor:pointer;
 	color:#FFF;
-	border:#900 1px solid !important;
+	border:#00edc3 1px solid !important;
 	padding:0px 10px !important;
 	line-height:30px;
 	-moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;
@@ -180,7 +181,88 @@ label.error {
     overflow: auto;
     width: 1000px;
 
-    }
+}
+
+#thuoc-nn-modal {
+  opacity: 1;
+}
+
+#thuoc-nn-modal span.title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 36px;
+    display: block;
+    margin-top: 20px;
+}
+
+#thuoc-nn-modal input[type="text"], select {
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+    color: #282F39;
+}
+#thuoc-nn-modal input ::-webkit-input-placeholder {
+      color: #282F39;
+}
+#thuoc-nn-modal input ::-moz-placeholder {
+      color: #282F39;
+}
+#thuoc-nn-modal span.value {
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px;
+    display: block;
+    margin-top: 10px;
+}
+#thuoc-nn-modal a.button {
+  background-color: #1aeec2;
+  color: #000;
+  border-radius: 16px;
+  padding: 12px 30px;
+  display: block;
+  width: 240px;
+  text-align: center;
+  margin: 0 auto 35px;
+}
+#thuoc-nn-modal .content {
+  padding: 20px;
+  border-top: 1px solid #ECECEC;
+  margin-top: 20px;
+}
+#thuoc-nn-modal ul {
+  list-style-type: square;
+  }
+#thuoc-nn-modal .modal-dialog {
+  max-width: 450px;
+  padding: 0;
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
+}
+#thuoc-nn-modal .modal-dialog .modal-content {
+  border-radius: 8px;
+}
+#thuoc-nn-modal .modal-dialog .modal-body {
+  padding: 0;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.6);
+}
+#thuoc-nn-modal .modal-dialog .close-button {
+  background-image: url(../images/ic-close.png);
+  background-repeat: no-repeat;
+  float: right;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  margin-bottom: -32px;
+  bottom: 16px;
+  left: 16px;
+  cursor: pointer;
+}
 /*
 #1F668B   mau xanh
 #FF7E00   mau cam
