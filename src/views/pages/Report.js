@@ -7,9 +7,17 @@ import Modal from 'react-bootstrap4-modal';
 import TopActionsBar from 'views/components/core/TopActionsBar';
 import { updateMessageStatus } from 'redux/actions/ui.action';
 
+import Metamask from 'blockchain/libs/metamask';
+import Database from 'blockchain/libs/database';
+import config from 'config';
+
 class Report extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+    this.metamask = new Metamask();
+    this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+
     this.state = {
       phanUngCoHaiADR: {
         DateADR: "",
@@ -75,6 +83,9 @@ class Report extends React.Component {
       },
       visibleModal1:false,
       visibleModal2:false,
+      visibleModalReviewersAndReferences:false,
+      reviewers:'',
+      references:'',
       ThuocNghiNgoJson: "",
       ThuocDongThoiJson: "",
     };
@@ -140,6 +151,12 @@ class Report extends React.Component {
       this.setState({
         thuocDungDongThoiADRModalState: { ...this.state.thuocDungDongThoiADRModalState, [name]: value }
       });
+    }
+    if(name === 'reviewers'){
+      this.setState({reviewers: value});
+    }
+    if(name === 'references'){
+      this.setState({references: value});
     }
   };
 
@@ -231,6 +248,18 @@ class Report extends React.Component {
     this.setState({ visibleModal2: false });
   }
 
+  closeModalReviewersAndReferences = () => {
+    this.setState({ visibleModalReviewersAndReferences: false });
+  }
+
+  openModalReviewersAndReferences = () => {
+    this.setState({ visibleModalReviewersAndReferences: true });
+  }
+
+  updateModalReviewersAndReferences = () => {
+    this.setState({ visibleModalReviewersAndReferences: false });
+  }
+
   submitForm = () => {
     var publicInfo = {
       phanUngCoHaiADR : this.state.phanUngCoHaiADR,
@@ -248,6 +277,11 @@ class Report extends React.Component {
 
     this.props.saveAdrReport(info, data => {
       console.log('=== saveAdrReport ===', data);
+      if(data){
+        //show popup to input array reviewers and references
+        this.setState({visibleModalReviewersAndReferences : true});
+      }
+      // this.database.submitReport()
     });
   }
 
@@ -759,6 +793,19 @@ class Report extends React.Component {
                 <input type="text" name="LyDoDungThuocDDD" placeholder="Lý do sử dụng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.LyDoDungThuocDDD}/>
               </div>
               <input type="button" className="button" value="Thêm mới" onClick={this.updateModal2}/>
+              {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
+            </div>
+          </div>
+        </Modal>
+        <Modal id="add-database-blockchain-modal" visible={this.state.visibleModalReviewersAndReferences} dialogClassName="modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body">
+              <button type="button" className="close-button" onClick={this.closeModalReviewersAndReferences}/>
+              <div className="content">
+                <input type="text" name="reviewers" placeholder="Danh sách địa chỉ người đánh giá" onChange={this.handleInput} value={this.state.reviewers}/>
+                <input type="text" name="references" placeholder="Danh sách tài liệu tham khảo" onChange={this.handleInput} value={this.state.references}/>
+              </div>
+              <input type="button" className="button" value="Thêm mới" onClick={this.updateModalReviewersAndReferences}/>
               {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
             </div>
           </div>
