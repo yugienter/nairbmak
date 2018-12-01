@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-
+import { saveAdrReport } from "../../redux/actions/adrReport.action.js";
 
 import "static/styles/contentForm.css";
 import Modal from 'react-bootstrap4-modal';
@@ -246,9 +245,9 @@ class Report extends React.Component {
       publicInfo : publicInfo,
       privateInfo : privateInfo,
     }
-    
-    this.props.saveAdrReport(info, hash => {
 
+    this.props.saveAdrReport(info, data => {
+      console.log('=== saveAdrReport ===', data);
     });
   }
 
@@ -774,9 +773,9 @@ const mapStateToProps = state => ({
   blockchain: state.blockchain,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  updateMessageStatus
-}, dispatch);
+const mapDispatchToProps = dispatch => ({
+  saveAdrReport: (options, callback) => dispatch(saveAdrReport(options, callback))
+});
 
 export default connect(
   mapStateToProps,

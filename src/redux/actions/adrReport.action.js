@@ -1,7 +1,7 @@
 import client from '../../helpers/client';
 import * as types from './actionTypes';
 
-export const saveAdrReport = (params) => {
+export const saveAdrReport = (params, callback) => {
 
   return dispatch => {
     dispatch({ type: types.SAVE_ADR_REPORT });
@@ -15,6 +15,7 @@ export const saveAdrReport = (params) => {
         type: types.SAVE_ADR_REPORT_SUCCESSFUL,
         data: res.data
       });
+      callback && callback(res.data);
     })
     .catch(err => {
       dispatch({
