@@ -105,7 +105,6 @@ const Components = (props) =>
         </Section>
       </div>
     </div>
-    {props.footer}
   </div>;
 
 export default Components;
