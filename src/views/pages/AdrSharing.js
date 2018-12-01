@@ -1,6 +1,7 @@
 import React from 'react';
 import Metamask from 'blockchain/libs/metamask';
 import Stake from 'blockchain/libs/stake';
+import Distribution from 'blockchain/libs/distribution';
 import config from 'config';
 
 class AdrSharing extends React.Component {
@@ -8,11 +9,14 @@ class AdrSharing extends React.Component {
     super(props);
     this.state = {
       amountOfStake: 0,
-      milestone: 0
+      milestone: 0,
+      TXID: ''
     }
+    this.share = this.share.bind(this);
 
     this.metamask = new Metamask();
     this.stake = new Stake(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+    this.distribution = new Distribution(config.eth.DISTRIBUTION.ADDRESS, this.metamask.web3);
 
     this.metamask.fetch()
       .then(data => this.stake.stakeOf(data.ACCOUNT))
@@ -32,6 +36,15 @@ class AdrSharing extends React.Component {
       });
   }
 
+  share(e) {
+    e.preventDefault();
+    this.distribution.share().then(re => {
+      this.setState({TXID: re})
+    }).catch(er => {
+      console.log(er)
+    });
+  }
+
 
   render() {
 
@@ -40,12 +53,12 @@ class AdrSharing extends React.Component {
         <div className="site-upper adr-sharing">
           {this.props.header}
           <div className="page-hero">
-            <h1 className="heading">asdfsad</h1>
-            <span className="description">asdfas</span>
+            <h1 className="heading">STAKE</h1>
+            <span className="description">Long term token</span>
           </div>;
         </div>
         <section className='AdrSharing__main'>
-          <form onSubmit={this.redeem} className="form-horizontal" id="redeem-form">
+          <form onSubmit={this.share} className="form-horizontal" id="redeem-form">
             <div className="form-group">
               <label htmlFor="redeem-address">Milestone</label>
               <input value={this.state.milestone} onChange={this.onChangeAddress} type="text" className={"form-control "} id="redeem-address" name="redeem-address" />
@@ -57,6 +70,7 @@ class AdrSharing extends React.Component {
             <div className="form-group">
               <button id="redeem-submit" form="redeem-form" type="submit" className="btn btn-default">Withdraw</button>
             </div>
+            <span id="redeem-error-message">{this.state.TXID}</span>
           </form>
         </section>
       </div>
