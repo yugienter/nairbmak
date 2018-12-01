@@ -74,10 +74,10 @@ class Database {
    * Get basic report info
    * return result
    */
-  getBasicReportInfo(reporter, index) {
+  getReportInfo(reporter, index) {
     var self = this;
     return new Promise((resolve, reject) => {
-      self.DATABASE.INSTANCE.getBasicReportInfo(reporter, index, (er, re) => {
+      self.DATABASE.INSTANCE.getReportInfo(reporter, index, (er, re) => {
         if (er) return reject(er);
         return resolve(re);
       });

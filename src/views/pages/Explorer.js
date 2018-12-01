@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Metamask from 'blockchain/libs/metamask';
+import Database from 'blockchain/libs/database';
+import config from 'config';
 import $ from 'jquery'
 
 class Explorer extends React.Component {
@@ -8,6 +11,28 @@ class Explorer extends React.Component {
     super(props);
     this.state = {
       data: []
+    }
+    this.metamask = new Metamask();
+    this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+
+    this.fetchReport("0x6a572F664f13831304835FF9CFd37174FdBD2DcD",(er,re)=>{
+      console.log(re)
+    })
+  }
+
+  fetchReport(address,callback) {
+    var reports=[];
+    for(var i=0;i<10;i++){
+      console.log(this)
+      this.database.getReportInfo(address,i).then(re=>{
+        reports.push[re];
+        if(!re || i===9){
+          return callback(null,reports);
+        }
+      }).catch(er=>{
+        console.log(er);
+        return callback(er,null);
+      })
     }
   }
 
