@@ -1,9 +1,14 @@
 
 /*********************************************** content-form ***********************************************/
 #wrap-form{
-	width:99.8%;
-	margin-top:15px;
+  margin-top:15px;
+  width: 100%;
+  padding-right: 20vh;
+  padding-left: 20vh;
+  margin-right: auto;
+  margin-left: auto;
 }
+
 #wrap-form input{
 	border:#709bae 1px solid;
 	margin:1px 1px 1px 0px;
@@ -65,12 +70,12 @@
 	width:100%;
 	margin-bottom:10px;
 	float:left;
-	border:#578da2 1px solid;
+	border:#262f3a 1px solid;
 	padding-bottom:10px;
 }
 .boxes-form h2{
 	color:#fff; font-size:14px;
-	background:#578da2;
+	background:#262f3a;
 	margin-bottom:10px; padding:3px 10px;
 }
 .boxes-form h3{

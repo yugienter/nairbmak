@@ -29,16 +29,16 @@ class Report extends React.Component {
         <div id="wrap-form">
           <form id="myform" action="/Programs/ADRReport/ADRReport/Update/0" enctype="multipart/form-data">
               <div className="boxes-form" id="box2">
-                  <h2 className="title-boxesForm">II. THÔNG TIN VỀ PHẢN ỨNG CÓ HẠI (ADR)</h2>
+                  <h2 className="title-boxesForm">I. THÔNG TIN VỀ PHẢN ỨNG CÓ HẠI (ADR)</h2>
                   <table width="100%">
                   <tbody>
                     <tr>
                       <td width="45%">
-                          <label style={{width:"200px", float:"left"}}>5. Ngày xuất hiện phản ứng:</label>
+                          <label style={{width:"200px", float:"left"}}>1. Ngày xuất hiện phản ứng:</label>
                           <input id="DateADR" name="DateADR" style={{width:"80px"}} type="text" className="datepicker hasDatepicker" value=""/>
                       </td>
                       <td>
-                          <label style={{width: "300px", float: "left"}}>6. Phản ứng xuất hiện sau bao lâu:<br/><em>(Tính từ lần dùng cuối cùng của thuốc nghi ngờ)</em>
+                          <label style={{width: "300px", float: "left"}}>2. Phản ứng xuất hiện sau bao lâu:<br/><em>(Tính từ lần dùng cuối cùng của thuốc nghi ngờ)</em>
                           </label>
                           <input id="DurationADR" name="DurationADR" style={{width: "40px"}} type="text" value="0"/>
                           <label>Đơn vị tính</label>
@@ -51,10 +51,10 @@ class Report extends React.Component {
                   </tr>
                   <tr>
                       <td rowspan="4">
-                        <label>7. Mô tả biểu hiện ADR</label><span style={{color:"Red"}}>*</span><textarea id="DescriptionsADR" name="DescriptionsADR" style={{width:"98%", float:"left"}} rows="18" className="required"></textarea>
+                        <label>3. Mô tả biểu hiện ADR</label><span style={{color:"Red"}}>*</span><textarea id="DescriptionsADR" name="DescriptionsADR" style={{width:"98%", float:"left"}} rows="18" className="required"></textarea>
                       </td>
                       <td valign="top">
-                        <label>8. Các xét nghiệm liên quan đến phản ứng</label><textarea id="XetNghiemADR" name="XetNghiemADR" style={{width:"97%", float:"left"}} rows="4"></textarea>
+                        <label>4. Các xét nghiệm liên quan đến phản ứng</label><textarea id="XetNghiemADR" name="XetNghiemADR" style={{width:"97%", float:"left"}} rows="4"></textarea>
                       </td>
                   </tr>
                   <tr>
@@ -65,19 +65,19 @@ class Report extends React.Component {
                   </tr>
                   <tr>
                       <td valign="top">
-                          <label>9. Tiền sử:</label>
+                          <label>5. Tiền sử:</label>
                           <textarea id="TienSuADR" name="TienSuADR" style={{width:"97%", float:"left"}} rows="2"></textarea>
                       </td>
                   </tr>
                   <tr>
                       <td>
-                          <label>10. Cách xử trí phản ứng</label><textarea id="XuTriADR" name="XuTriADR" style={{width:"97%", float:"left"}} rows="4"></textarea>
+                          <label>6. Cách xử trí phản ứng</label><textarea id="XuTriADR" name="XuTriADR" style={{width:"97%", float:"left"}} rows="4"></textarea>
                       </td>
                   </tr>
                   </tbody></table>
 
                       <p>
-                          <label style={{width:"25%", float:"left"}}>11. Mức độ nghiêm trọng của phản ứng:</label>
+                          <label style={{width:"25%", float:"left"}}>7. Mức độ nghiêm trọng của phản ứng:</label>
                       </p>
                       <table>
                           <tbody><tr>
@@ -94,7 +94,7 @@ class Report extends React.Component {
                       </tbody></table>
                       <hr/>
                       <p>
-                          <label style={{width:"250px", float:"left"}}>12. Kết quả sau khi xử trí phản ứng:</label>
+                          <label style={{width:"250px", float:"left"}}>8. Kết quả sau khi xử trí phản ứng:</label>
                       </p>
 
                       <table>
@@ -115,8 +115,8 @@ class Report extends React.Component {
               </div>
 
               <div className="boxes-form" id="Div1">
-                <h2 className="title-boxesForm">III. THÔNG TIN VỀ THUỐC NGHI NGỜ GÂY ADR</h2>
-                <h3>13. Thuốc nghi ngờ gây phản ứng</h3>
+                <h2 className="title-boxesForm">II. THÔNG TIN VỀ THUỐC NGHI NGỜ GÂY ADR</h2>
+                <h3>9. Thuốc nghi ngờ gây phản ứng</h3>
 
                 <table width="100%" border="1" className="grid" id="tblIII">
                 <thead>
@@ -141,7 +141,7 @@ class Report extends React.Component {
                   <input id="btnAdd13" className="button" type="button" onclick="btnAdd13_click()" value="Thêm mới"/>
                 </p>
                 <div>
-                  <h3>16. Các thuốc dùng đồng thời (Ngoại trừ các thuốc dùng điều trị/ khắc phục hậu quả của ADR)</h3>
+                  <h3>10. Các thuốc dùng đồng thời (Ngoại trừ các thuốc dùng điều trị/ khắc phục hậu quả của ADR)</h3>
                   <table width="100%" border="1" className="grid" id="tblIV">
                   <thead>
                   <tr className="row-top">
@@ -165,11 +165,11 @@ class Report extends React.Component {
                 </div>
               </div>
               <div className="boxes-form">
-                <h2 className="title-boxesForm">IV. PHẦN THẨM ĐỊNH ADR CỦA ĐƠN VỊ</h2>
+                <h2 className="title-boxesForm">III. PHẦN THẨM ĐỊNH ADR CỦA ĐƠN VỊ</h2>
                 <table>
                   <tbody>
                     <tr>
-                      <td colspan="3">17. Đánh giá mối liên quan giữa thuốc và ADR</td>
+                      <td colspan="3">11. Đánh giá mối liên quan giữa thuốc và ADR</td>
                     </tr>
                     <tr>
                       <td style={{width : "200px"}}>
@@ -208,7 +208,7 @@ class Report extends React.Component {
                 <table>
                   <tbody>
                     <tr>
-                      <td colspan="4">18. Đơn vị thẩm định ADR theo thang nào?</td>
+                      <td colspan="4">12. Đơn vị thẩm định ADR theo thang nào?</td>
                     </tr>
                     <tr>
                       <td style={{width : "200px"}}>
@@ -225,7 +225,7 @@ class Report extends React.Component {
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="4">19. Phần bình luận của cán bộ y tế (nếu có)</td>
+                      <td colspan="4">13. Phần bình luận của cán bộ y tế (nếu có)</td>
                       </tr>
                       <tr>
                       <td colspan="4">
@@ -237,11 +237,11 @@ class Report extends React.Component {
               </div>
 
               <div className="boxes-form">
-                <h2 className="title-boxesForm">V. THÔNG TIN VỀ NGƯỜI/ĐƠN VỊ GỬI BÁO CÁO</h2>
+                <h2 className="title-boxesForm">IV. THÔNG TIN VỀ NGƯỜI/ĐƠN VỊ GỬI BÁO CÁO</h2>
                 <table>
                     <tbody>
                       <tr>
-                        <td style={{textAlign:"left",width:"100px"}}>20. Họ và Tên:<span style={{color:"Red"}}>*</span></td>
+                        <td style={{textAlign:"left",width:"100px"}}>14. Họ và Tên:<span style={{color:"Red"}}>*</span></td>
                         <td>
                           <input id="HoTenNG" name="HoTenNG" type="text" style={{width : "160px"}} className="required" value=""/>
                         </td>
@@ -269,18 +269,18 @@ class Report extends React.Component {
                           <input id="PhoneNumberNG" name="PhoneNumberNG" type="text" value=""/>
                         </td>
 
-                        <td style={{textAlign:"right"}}>21.Dạng báo cáo:</td>
+                        <td style={{textAlign:"right"}}>15.Dạng báo cáo:</td>
                         <td>
                           <input id="Radio23" name="ReportType" type="radio" checked="checked" value="Báo cáo lần đầu"/>Báo cáo lần đầu
                           <input id="Radio24" name="ReportType" type="radio" value="Báo cáo bổ sung"/>Báo cáo bổ sung
                         </td>
-                        <td style={{textAlign:"right"}}>22.Ngày báo cáo: </td>
+                        <td style={{textAlign:"right"}}>16.Ngày báo cáo: </td>
                         <td>
                           <input id="ReportDate" name="ReportDate" style={{width : "70px"}} type="text" className="datepicker hasDatepicker" value="01/12/2018"/><img className="ui-datepicker-trigger" src="/Content/images/calendar.gif" alt="..." title="..."/>
                         </td>
                       </tr>
                     <tr>
-                      <td>23. Tên đơn vị báo cáo:<span style={{color:"Red"}}>*</span></td>
+                      <td>17. Tên đơn vị báo cáo:<span style={{color:"Red"}}>*</span></td>
                       <td colspan="2">
                         <input type="text" id="TenDonVi" name="TenDonVi" style={{width : "250px"}} value="" className="required"/>
                         </td>
