@@ -359,6 +359,7 @@ label.error {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .fab-score {
   border-radius: 50%;
@@ -374,6 +375,7 @@ label.error {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .fab-close {
   border-radius: 50%;
@@ -389,6 +391,7 @@ label.error {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 /*
