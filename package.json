@@ -10,6 +10,7 @@
     "axios": "^0.18.0",
     "history": "^4.7.2",
     "i": "^0.3.6",
+    "jquery": "^3.3.1",
     "npm": "^6.4.0",
     "react": "^16.4.0",
     "react-bootstrap4-modal": "^1.7.0",
