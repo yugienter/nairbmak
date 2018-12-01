@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 import { updateMessageStatus } from 'redux/actions/ui.action';
+import TopActionsBar from 'views/components/core/TopActionsBar';
 
 
 class Home extends React.Component {
@@ -54,6 +55,7 @@ class Home extends React.Component {
       <div id="site_wrapper">
         <div className="site-upper">
           {this.props.header}
+          <TopActionsBar />
         </div>
         <main className="main bg-white">
           <div className="container text-center" style={{marginTop: 40}}>

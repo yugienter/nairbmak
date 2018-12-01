@@ -7,6 +7,8 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case types.UPDATE_PAGE_STATUS:
+      return { ...state, status: action.data };
     case types.UPDATE_MESSAGE_STATUS:
       return { ...state, metaSttShow: action.data };
     default:
