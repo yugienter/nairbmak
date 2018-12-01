@@ -168,6 +168,15 @@ class App extends React.Component {
         {
           this.props.ui.metaSttShow && <BlockchainAlert blockchain={this.props.blockchain} key={1} />
         }
+        <a className="fab-buy" href="/buy">
+          Buy
+        </a>
+        <a className="fab-score" href="/buy">
+          Score
+        </a>
+        <a className="fab-close" href="/buy">
+          Close
+        </a>
         <Header logo={this.state.logo}>
           <Nav>
             {this.state.nav.map((item, index) => <NavItem key={index} item={item} />)}
