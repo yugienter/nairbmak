@@ -621,7 +621,7 @@ class Report extends React.Component {
                                       <input id="opt18.2" name="ThangADR" type="radio" value="Thang Naranjo" defaultChecked={ this.state.thamdinhADR.ThangADR==="Thang Naranjo" } onChange={this.handleChangeRadio} /> Thang Naranjo
                                   </td>
                                   <td style={{ verticalAlign: "top" }}>
-                                      <input id="opt18.3" name="ThangADR" type="radio" value="Thang khác" defaultChecked={ this.state.phanUngCoHaiADR.DoNghiemTrongADR !=="Thang WHO" && this.state.thamdinhADR.ThangADR !=="Thang Naranjo" } onChange={this.handleChangeRadio} /> Thang khác
+                                      <input id="opt18.3" name="ThangADR" type="radio" value="Thang khác" defaultChecked={ this.state.thamdinhADR.ThangADR !=="Thang WHO" && this.state.thamdinhADR.ThangADR !=="Thang Naranjo" } onChange={this.handleChangeRadio} /> Thang khác
                                       <input id="txtThangADR" name="ThangADR" type="text" onChange={this.handleInput} value={this.state.thamdinhADR.ThangADR} style={{ width: "150px" }} />
                                   </td>
                                   <td style={{ width: "150px" }}>

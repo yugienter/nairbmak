@@ -1,6 +1,6 @@
 import Home from 'views/pages/Home';
 import Report from 'views/pages/Report';
-import ViewReport from 'views/pages/Report';
+import ViewReport from 'views/pages/ViewReport';
 import AdrSharing from 'views/pages/AdrSharing';
 
 export default [
