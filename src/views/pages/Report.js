@@ -231,9 +231,6 @@ class Report extends React.Component {
     })
     this.setState({ visibleModal2: false });
   }
-  handleSubmitReport = () => {
-    this.props.saveAdrReport(this.state.reportContent);
-  }
 
   submitForm = () => {
     var publicInfo = {
@@ -249,8 +246,10 @@ class Report extends React.Component {
       publicInfo : publicInfo,
       privateInfo : privateInfo,
     }
-    console.log(JSON.stringify(info));
+    
+    this.props.saveAdrReport(info, hash => {
 
+    });
   }
 
   render() {

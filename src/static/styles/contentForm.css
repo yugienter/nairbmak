@@ -195,7 +195,7 @@ label.error {
     margin-top: 20px;
 }
 
-#thuoc-nn-modal input[type="text"], select {
+#thuoc-nn-modal input[type="text"], #thuoc-nn-modal select {
     background-color: #F4F4F4;
     border-radius: 10px;
     padding: 20px;
@@ -276,7 +276,7 @@ label.error {
     margin-top: 20px;
 }
 
-#thuoc-dung-chung-modal input[type="text"], select {
+#thuoc-dung-chung-modal input[type="text"], #thuoc-dung-chung-modal select {
     background-color: #F4F4F4;
     border-radius: 10px;
     padding: 20px;
