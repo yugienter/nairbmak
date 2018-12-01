@@ -187,6 +187,9 @@ class Report extends React.Component {
     this.props.saveAdrReport(this.state.reportContent);
   }
 
+  submitForm = () => {
+
+  }
 
   render() {
     return (
@@ -569,8 +572,8 @@ class Report extends React.Component {
                       </table>
                   </div>
                   <p className="bt-end-form">
-                      <input id="SubmitForm" className="button" type="button" value="Nộp báo cáo" />
-                      {/* <input id="btnClearForm" className="button" type="reset" value="Nhập lại từ đầu" onclick="btnClearForm_click()" /> */}
+                      <input type="button" className="button" value="Nộp báo cáo" onClick={e=> (e.preventDefault(), this.submitForm())}/>
+
                   </p>
                   <input type="hidden" name="ThuocNghiNgoJson" id="ThuocNghiNgoJson" />
                   <input type="hidden" name="ThuocDongThoiJson" id="ThuocDongThoiJson" />
