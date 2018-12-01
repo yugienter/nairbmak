@@ -21,11 +21,15 @@ class ViewReport extends React.Component {
     this.state = {
       inputHashData: '',
       visibleModalScore:false,
+      reporterScore:'',
+      indexScore:'',
+      importanceScore:10,
+      completenessScore:0,
+      messageModalScore:'',
       visibleModalClose:false,
       messageModalClose:'',
       inputNumberClose:'',
-      selectNumber:10,
-      inputNumber:0
+
     };
   }
 
@@ -88,6 +92,18 @@ class ViewReport extends React.Component {
     let { name, value } = e.target;
     this.setState({ [name] : value});
   };
+
+  handleModalScore = () => {
+    // reporter, index, completeness, importance
+    this.database.scoreReport(this.state.reporterScore, this.state.indexScore+0, this.state.completenessScore+0, this.state.importanceScore+0)
+      .then(re => {
+        this.setState({messageModalScore : "Thành công."});
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({messageModalScore : "Đã có lỗi xảy ra."});
+      })
+  }
 
   handleClickBtnClose = (e) => {
     e.preventDefault();
@@ -522,16 +538,25 @@ class ViewReport extends React.Component {
                 <button type="button" className="close-button" onClick={this.closeModalScore}/>
                 <div className="content">
                 {/* <span className="title">{this.state.messageDone}</span> */}
-                <select name="selectNumber" onChange={this.handleNumber} value={this.state.selectNumber}>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                </select>
-                <input type="text" name="inputNumber" style={{ width: "98%", float: "left" }} placeholder="Just input from 0 to 60" value={this.state.inputNumber} onChange={this.handleNumber} />
+                {this.state.messageModalScore
+                ? <span className="title">{this.state.messageModalScore}</span>
+                :
+                <div>
+                  <input type="text" name="reporterScore" style={{ width: "98%", float: "left" }} placeholder="Reporter" value={this.state.reporterScore} onChange={this.handleNumber} />
+                  <input type="text" name="indexScore" style={{ width: "98%", float: "left" }} placeholder="index - number" value={this.state.indexScore} onChange={this.handleNumber} />
+                  <select name="importanceScore" onChange={this.handleNumber} value={this.state.importanceScore}>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                  </select>
+                  <input type="text" name="completenessScore" style={{ width: "98%", float: "left" }} placeholder="completeness : Just input from 0 to 60" value={this.state.completenessScore} onChange={this.handleNumber} />
+                </div>
+                }
+
 
                 </div>
-                <input type="button" className="button" value="Score" onClick={this.closeModalScore}/>
+                <input type="button" className="button" value="Score" onClick={this.handleModalScore}/>
                 {/* <Button type="primary" customStyle={{"display": "block", "margin": "0 auto 20px"}} onClick={this.updateModal1}>Cập nhật</Button> */}
               </div>
             </div>
