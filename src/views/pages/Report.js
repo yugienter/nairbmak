@@ -98,9 +98,14 @@ class Report extends React.Component {
         thongTinNguoiThamDinh: { ...this.state.thongTinNguoiThamDinh, [name]: value }
       });
     }
-    if(!(name in this.state.thongTinNguoiThamDinh) && !(name in this.state.thamdinhADR) && !(name in this.state.phanUngCoHaiADR) ){
+    if(name in this.state.thuocNghiNgoADRModalState ){
       this.setState({
         thuocNghiNgoADRModalState: { ...this.state.thuocNghiNgoADRModalState, [name]: value }
+      });
+    }
+    if(name in this.state.thuocDungDongThoiADRModalState ){
+      this.setState({
+        thuocDungDongThoiADRModalState: { ...this.state.thuocDungDongThoiADRModalState, [name]: value }
       });
     }
   };
@@ -122,9 +127,14 @@ class Report extends React.Component {
         thongTinNguoiThamDinh: { ...this.state.thongTinNguoiThamDinh, [name]: value }
       });
     }
-    if(!(name in this.state.thongTinNguoiThamDinh) && !(name in this.state.thamdinhADR) && !(name in this.state.phanUngCoHaiADR) ){
+    if(name in this.state.thuocNghiNgoADRModalState ){
       this.setState({
         thuocNghiNgoADRModalState: { ...this.state.thuocNghiNgoADRModalState, [name]: value }
+      });
+    }
+    if(name in this.state.thuocDungDongThoiADRModalState ){
+      this.setState({
+        thuocDungDongThoiADRModalState: { ...this.state.thuocDungDongThoiADRModalState, [name]: value }
       });
     }
   };
@@ -146,9 +156,14 @@ class Report extends React.Component {
         thongTinNguoiThamDinh: { ...this.state.thongTinNguoiThamDinh, [name]: value }
       });
     }
-    if(!(name in this.state.thongTinNguoiThamDinh) && !(name in this.state.thamdinhADR) && !(name in this.state.phanUngCoHaiADR) ){
+    if(name in this.state.thuocNghiNgoADRModalState ){
       this.setState({
         thuocNghiNgoADRModalState: { ...this.state.thuocNghiNgoADRModalState, [name]: value }
+      });
+    }
+    if(name in this.state.thuocDungDongThoiADRModalState ){
+      this.setState({
+        thuocDungDongThoiADRModalState: { ...this.state.thuocDungDongThoiADRModalState, [name]: value }
       });
     }
   }
@@ -187,6 +202,20 @@ class Report extends React.Component {
   }
 
   submitForm = () => {
+    var publicInfo = {
+      phanUngCoHaiADR : this.state.phanUngCoHaiADR,
+      thongTinNguoiThamDinh : this.state.thongTinNguoiThamDinh,
+    }
+    var privateInfo = {
+      thamdinhADR : this.state.thamdinhADR,
+      thuocNghiNgoADR : this.state.thuocNghiNgoADR,
+      thuocDungDongThoiADR  : this.state.thuocDungDongThoiADR,
+    }
+    var info = {
+      publicInfo : publicInfo,
+      privateInfo : privateInfo,
+    }
+    console.log(JSON.stringify(info));
 
   }
 
@@ -208,7 +237,7 @@ class Report extends React.Component {
                                       <label style={{ width: "200px", float: "left" }}>
                                           1. Ngày xuất hiện phản ứng:
                                       </label>
-                                      <input id="DateADR" name="DateADR" style={{ width: "120px" }} type="date" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.phanUngCoHaiADR.DateADR} />
+                                      <input id="DateADR" name="DateADR" style={{ width: "120px" }} type="text" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.phanUngCoHaiADR.DateADR} />
                                   </td>
                                   <td>
                                       <label style={{ width: "300px", float: "left" }}>
@@ -550,7 +579,7 @@ class Report extends React.Component {
                                   </td>
                                   <td style={{ textAlign: "right" }}>18.Ngày báo cáo: </td>
                                   <td>
-                                      <input id="ReportDate" name="ReportDate" style={{ width: "70px" }} type="date" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.thongTinNguoiThamDinh.ReportDate} />
+                                      <input id="ReportDate" name="ReportDate" style={{ width: "70px" }} type="text" onChange={this.handleInput} className="datepicker hasDatepicker" value={this.state.thongTinNguoiThamDinh.ReportDate} />
                                       <img className="ui-datepicker-trigger" src="/Content/images/calendar.gif" alt="..." title="..." />
                                   </td>
                               </tr>
@@ -604,8 +633,8 @@ class Report extends React.Component {
                   <option value="UI/ml">UI/ml</option>
                 </select>
                 <input type="text" name="DuongDungThuocNN" placeholder="Đường Dùng" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.DuongDungThuocNN}/>
-                <input type="date" name="NgayBatDauThuocNN" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayBatDauThuocNN}/>
-                <input type="date" name="NgayKetThucThuocNN" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayKetThucThuocNN}/>
+                <input type="text" name="NgayBatDauThuocNN" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayBatDauThuocNN}/>
+                <input type="text" name="NgayKetThucThuocNN" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.NgayKetThucThuocNN}/>
                 <input type="text" name="HamLuongThuocNN" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocNghiNgoADRModalState.HamLuongThuocNN}/>
                 <select name="DonViHamLuongThuocNN" value="" onChange={this.handleSelected} value={this.state.thuocNghiNgoADRModalState.DonViHamLuongThuocNN}>
                   <option value="G">G</option>
@@ -641,7 +670,7 @@ class Report extends React.Component {
                 </label>
                 <input id="opt15.1" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Có" } onChange={this.handleChangeRadio} value="Có"/><span lang="en-us"> Có</span>
                 <input id="opt15.2" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không" } onChange={this.handleChangeRadio} value="Không"/><span lang="en-us"> Không</span>
-                <input id="opt15.3" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không tái sử dụng" } onChange={this.handleChangeRadio} value="Không tái sử dụng"/><span lang="en-us"> Không ngừng/Giảm liều</span>
+                <input id="opt15.3" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không tái sử dụng" } onChange={this.handleChangeRadio} value="Không tái sử dụng"/><span lang="en-us"> Không tái sử dụng</span>
                 <input id="opt15.4" name="PhanUngTaiSDThuocNN" type="radio" defaultChecked={ this.state.thuocNghiNgoADRModalState.PhanUngTaiSDThuocNN==="Không có thông tin" } onChange={this.handleChangeRadio} value="Không có thông tin" /><span lang="en-us"> Không có thông tin</span>
               </div>
               <input type="button" className="button" value="Thêm mới" onClick={e=> (e.preventDefault(), this.updateModal1())}/>
@@ -671,8 +700,8 @@ class Report extends React.Component {
                   <option value="UI/ml">UI/ml</option>
                 </select>
                 <input type="text" name="DuongDungThuocDDD" placeholder="Đường Dùng" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.DuongDungThuocDDD}/>
-                <input type="date" name="NgayBatDauThuocDDD" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayBatDauThuocDDD}/>
-                <input type="date" name="NgayKetThucThuocDDD" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayKetThucThuocDDD}/>
+                <input type="text" name="NgayBatDauThuocDDD" placeholder="Ngày Bắt đầu" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayBatDauThuocDDD}/>
+                <input type="text" name="NgayKetThucThuocDDD" placeholder="Ngày Kết thúc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.NgayKetThucThuocDDD}/>
                 <input type="text" name="HamLuongThuocDDD" placeholder="Hàm lượng thuốc" onChange={this.handleInput} value={this.state.thuocDungDongThoiADRModalState.HamLuongThuocDDD}/>
                 <select name="DonViHamLuongThuocDDD" value="" onChange={this.handleSelected} value={this.state.thuocDungDongThoiADRModalState.DonViHamLuongThuocDDD}>
                   <option value="G">G</option>
