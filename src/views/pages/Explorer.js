@@ -16,13 +16,17 @@ class Explorer extends React.Component {
     }
     this.metamask = new Metamask();
     this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+  }
 
-    this.fetchReport("0x6a572F664f13831304835FF9CFd37174FdBD2DcD");
+  componentWillReceiveProps(props) {
+    if (props.blockchain && props.blockchain.ACCOUNT) {
+      this.fetchReport(props.blockchain.ACCOUNT);
+    }
   }
 
   fetchReport(address) {
     let k = 0;
-    for (var i = 5; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       this.database.getBasicReportInfo(address, i).then(re => {
         if (re[0] != '0x') {
           const hash = re[0].substr(2);
@@ -105,6 +109,7 @@ class Explorer extends React.Component {
 
 
 const mapStateToProps = state => ({
+  blockchain: state.blockchain
 });
 
 const mapDispatchToProps = dispatch => ({
