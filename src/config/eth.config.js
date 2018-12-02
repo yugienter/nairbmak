@@ -8,14 +8,14 @@ var config = {};
  */
 config.local = {
   WORK: {
-    ADDRESS: '0xa5c502edfc072fd5913e7879cc78fadb931aa0f7',
+    ADDRESS: '0x5a5d01e417efbe9484b0c97fd080cbf50146afe6',
     DECIMALS: 18
   },
   DATABASE: {
-    ADDRESS: '0x7369539f3ee65917411c1164f51a63090b30febb'
+    ADDRESS: '0xa0a4505b4f2b5955799c8e57ba780964953ba4c6'
   },
   DISTRIBUTION: {
-    ADDRESS: '0x65d96bf68e2678ddb9a09b1153665c43198eeaf2'
+    ADDRESS: '0x1407404667dd0f77849ac76cbf9c16cc59a101cc'
   },
   NETWORK: '4',
   EVENTS: {

@@ -95,7 +95,7 @@ class ViewReport extends React.Component {
 
   handleModalScore = () => {
     // reporter, index, completeness, importance
-    this.database.scoreReport(this.state.reporterScore, this.state.indexScore+0, this.state.completenessScore+0, this.state.importanceScore+0)
+    this.database.scoreReport(this.state.reporterScore, Number(this.state.indexScore), Number(this.state.completenessScore), Number(this.state.importanceScore))
       .then(re => {
         this.setState({messageModalScore : "Thành công."});
       })
