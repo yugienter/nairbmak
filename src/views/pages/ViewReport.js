@@ -8,6 +8,7 @@ import { updateMessageStatus } from 'redux/actions/ui.action';
 
 import Metamask from 'blockchain/libs/metamask';
 import Database from 'blockchain/libs/database';
+import Work from 'blockchain/libs/work';
 import Modal from 'react-bootstrap4-modal';
 import config from 'config';
 
@@ -17,6 +18,7 @@ class ViewReport extends React.Component {
 
     this.metamask = new Metamask();
     this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+    this.work = new Work(config.eth.DATABASE.ADDRESS, this.metamask.web3);
 
     this.state = {
       inputHashData: '',
@@ -126,6 +128,19 @@ class ViewReport extends React.Component {
       })
   }
 
+  handleClickBtnBuy = (e) => {
+    e.preventDefault();
+    // let amout = 1*Math.pow(10, 18);
+    let amout = 10**18;
+    this.work.transfer(config.eth.DISTRIBUTION.ADDRESS, amout)
+      .then((re)=>{
+        console.log("tranfer : ",re);
+      })
+      .catch(err=>{
+        console.log("err tranfer : ",err);
+      })
+  };
+
   render() {
     return (
       <div id="site_wrapper">
@@ -134,7 +149,7 @@ class ViewReport extends React.Component {
           <TopActionsBar />
         </div>
         <main className="main bg-white">
-          <a className="fab-buy" href="#">
+          <a className="fab-buy" href="#" onClick={this.handleClickBtnBuy}>
             Buy
           </a>
           <a className="fab-score" href="#" onClick={this.handleClickBtnScore}>
