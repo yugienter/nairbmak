@@ -269,7 +269,7 @@ class Report extends React.Component {
       references = this.state.references.replace(/\n/g,' ').trim().split(",");
     }
     console.log(this.state.hashData,reviewers,references)
-    this.database.submitReport(this.state.hashData, reviewers, references)
+    this.database.submitReport('0x'+this.state.hashData, reviewers, references)
       .then(re=>{
         console.log(re);
         this.setState({

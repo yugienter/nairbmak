@@ -41,7 +41,7 @@ export const getAdrReport = (params, callback) => {
         type: types.GET_ADR_REPORT_SUCCESSFUL,
         data: res.data.data
       });
-      callback && callback(res.data);
+      callback && callback(res.data.data);
     })
     .catch(err => {
       dispatch({
