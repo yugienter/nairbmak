@@ -28,6 +28,7 @@ class Explorer extends React.Component {
     let k = 0;
     for (var i = 0; i < 10; i++) {
       this.database.getBasicReportInfo(address, i).then(re => {
+        console.log(re)
         if (re[0] != '0x') {
           const hash = re[0].substr(2);
           this.props.getAdrReport({ hash: hash, isEncoded: true }, (data) => {

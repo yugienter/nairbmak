@@ -18,7 +18,7 @@ class ViewReport extends React.Component {
 
     this.metamask = new Metamask();
     this.database = new Database(config.eth.DATABASE.ADDRESS, this.metamask.web3);
-    this.work = new Work(config.eth.DATABASE.ADDRESS, this.metamask.web3);
+    this.work = new Work(config.eth.WORK.ADDRESS, this.metamask.web3);
 
     this.state = {
       inputHashData: '',
